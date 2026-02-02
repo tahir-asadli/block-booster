@@ -449,12 +449,12 @@ return array(
 				'default' => ''
 			),
 			'imageWidth' => array(
-				'type' => 'number',
-				'default' => 32
+				'type' => 'string',
+				'default' => '32px'
 			),
 			'imageHeight' => array(
-				'type' => 'number',
-				'default' => 32
+				'type' => 'string',
+				'default' => '32px'
 			),
 			'bindImageDimensions' => array(
 				'type' => 'boolean',

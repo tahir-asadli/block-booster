@@ -42,12 +42,12 @@
       "default": ""
     },
     "imageWidth": {
-      "type": "number",
-      "default": 32
+      "type": "string",
+      "default": "32px"
     },
     "imageHeight": {
-      "type": "number",
-      "default": 32
+      "type": "string",
+      "default": "32px"
     },
     "bindImageDimensions": {
       "type": "boolean",

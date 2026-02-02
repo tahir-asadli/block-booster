@@ -14,6 +14,7 @@ import {
 import {
 	__experimentalToggleGroupControl as ToggleGroupControl,
 	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
+	__experimentalUnitControl as UnitControl,
 	Button,
 	ToolbarGroup,
 	ToolbarButton,
@@ -151,6 +152,8 @@ export default function Edit({
 
 	// Handler for width/height change with binding
 	const handleWidthChange = (value) => {
+		console.log("value", value);
+
 		if (bindImageDimensions) {
 			setAttributes({ imageWidth: value, imageHeight: value });
 		} else {
@@ -165,10 +168,16 @@ export default function Edit({
 			setAttributes({ imageHeight: value });
 		}
 	};
+	console.log("imageWidth", imageWidth);
 
 	const ArrowRightLeftIcon = (
 		<ArrowRightLeft fill="white" className="svg-no-fill" />
 	);
+	const units = [
+		{ value: "px", label: "px", default: 0 },
+		{ value: "%", label: "%", default: 10 },
+		{ value: "em", label: "em", default: 0 },
+	];
 	return (
 		<>
 			<BlockControls>
@@ -185,63 +194,52 @@ export default function Edit({
 			</BlockControls>
 			<InspectorControls>
 				<PanelBody title={__("Settings", "block-booster")}>
-					<div style={{ marginTop: "10px", marginBottom: "10px" }}>
-						<InspectorLabel
-							title={__("Image width", "block-booster")}
-							hideLayoutButton={true}
-						/>
-					</div>
-					<RangeControl
-						__nextHasNoMarginBottom
-						__next40pxDefaultSize
-						value={imageWidth}
-						label={null}
-						onChange={handleWidthChange}
-						min={0}
-						max={500}
-					/>
 					<div
 						style={{
 							display: "flex",
-							alignItems: "center",
+							alignItems: "flex-end",
 							justifyContent: "space-between",
-							marginTop: "10px",
+							gap: "10px",
 							marginBottom: "10px",
 						}}
 					>
-						<InspectorLabel
-							title={__("Image height", "block-booster")}
-							hideLayoutButton={true}
+						<UnitControl
+							__next40pxDefaultSize
+							units={units}
+							label={__("Width", "block-booster")}
+							value={imageWidth}
+							onChange={handleWidthChange}
+							min={0}
+							style={{ flex: 1 }}
 						/>
-						<label
-							style={{
-								display: "flex",
-								alignItems: "center",
-								fontSize: "12px",
-								whiteSpace: "nowrap",
-								marginLeft: "10px",
-							}}
-						>
-							<input
-								type="checkbox"
-								checked={bindImageDimensions}
-								onChange={(e) =>
-									setAttributes({ bindImageDimensions: e.target.checked })
-								}
-								style={{ marginRight: "5px" }}
-							/>
-							{__("Link dimensions", "block-booster")}
-						</label>
+						<UnitControl
+							__next40pxDefaultSize
+							units={units}
+							label={__("Height", "block-booster")}
+							value={imageHeight}
+							onChange={handleHeightChange}
+							min={0}
+							style={{ flex: 1 }}
+						/>
 					</div>
-					<RangeControl
-						__nextHasNoMarginBottom
-						__next40pxDefaultSize
-						value={imageHeight}
-						label={null}
-						onChange={handleHeightChange}
-						min={0}
-						max={500}
-					/>
+					<label
+						style={{
+							display: "flex",
+							alignItems: "center",
+							fontSize: "12px",
+							marginBottom: "15px",
+						}}
+					>
+						<input
+							type="checkbox"
+							checked={bindImageDimensions}
+							onChange={(e) =>
+								setAttributes({ bindImageDimensions: e.target.checked })
+							}
+							style={{ marginRight: "5px" }}
+						/>
+						{__("Link dimensions", "block-booster")}
+					</label>
 					<TextControl
 						__nextHasNoMarginBottom
 						__next40pxDefaultSize
@@ -526,7 +524,7 @@ export default function Edit({
 							<span
 								style={{
 									color: svgColor,
-									fontSize: `${imageWidth}px`,
+									fontSize: `${imageWidth}`,
 									display: "inline-block",
 								}}
 								dangerouslySetInnerHTML={{ __html: imageContent }}
@@ -535,7 +533,7 @@ export default function Edit({
 					) : (
 						<div className="block-booster-icon-and-text--left">
 							<img
-								style={{ width: `${imageWidth}px`, height: `${imageHeight}px` }}
+								style={{ width: `${imageWidth}`, height: `${imageHeight}` }}
 								src={imageUrl}
 								alt={imageName}
 							/>

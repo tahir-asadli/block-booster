@@ -327,7 +327,7 @@ const hasA11yProp = (props) => {
   \**************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"block-booster/icon-and-text","version":"0.1.0","title":"Icon & Text","category":"block-booster","description":"","example":{},"supports":{"html":false,"color":{"background":true,"text":true},"typography":{"fontSize":true,"lineHeight":true,"textAlign":true},"background":{"backgroundSize":true,"backgroundImage":true},"spacing":{"margin":true,"padding":true,"blockGap":true}},"attributes":{"imageId":{"type":"number","default":0},"imageUrl":{"type":"string","default":""},"imageName":{"type":"string","default":""},"imageWidth":{"type":"number","default":32},"imageHeight":{"type":"number","default":32},"bindImageDimensions":{"type":"boolean","default":false},"imageContent":{"type":"string","default":""},"text":{"type":"string","default":""},"reversed":{"type":"boolean","default":false},"tabletReversed":{"type":"boolean","default":false},"mobileReversed":{"type":"boolean","default":false},"stacked":{"type":"boolean","default":false},"tabletStacked":{"type":"boolean","default":false},"mobileStacked":{"type":"boolean","default":false},"gap":{"type":"number","default":15},"tabletGap":{"type":"number","default":15},"mobileGap":{"type":"number","default":15},"svgColor":{"type":"string"}},"textdomain":"block-booster","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"block-booster/icon-and-text","version":"0.1.0","title":"Icon & Text","category":"block-booster","description":"","example":{},"supports":{"html":false,"color":{"background":true,"text":true},"typography":{"fontSize":true,"lineHeight":true,"textAlign":true},"background":{"backgroundSize":true,"backgroundImage":true},"spacing":{"margin":true,"padding":true,"blockGap":true}},"attributes":{"imageId":{"type":"number","default":0},"imageUrl":{"type":"string","default":""},"imageName":{"type":"string","default":""},"imageWidth":{"type":"string","default":"32px"},"imageHeight":{"type":"string","default":"32px"},"bindImageDimensions":{"type":"boolean","default":false},"imageContent":{"type":"string","default":""},"text":{"type":"string","default":""},"reversed":{"type":"boolean","default":false},"tabletReversed":{"type":"boolean","default":false},"mobileReversed":{"type":"boolean","default":false},"stacked":{"type":"boolean","default":false},"tabletStacked":{"type":"boolean","default":false},"mobileStacked":{"type":"boolean","default":false},"gap":{"type":"number","default":15},"tabletGap":{"type":"number","default":15},"mobileGap":{"type":"number","default":15},"svgColor":{"type":"string"}},"textdomain":"block-booster","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
 
 /***/ }),
 
@@ -497,6 +497,7 @@ function Edit({
 
   // Handler for width/height change with binding
   const handleWidthChange = value => {
+    console.log("value", value);
     if (bindImageDimensions) {
       setAttributes({
         imageWidth: value,
@@ -520,10 +521,24 @@ function Edit({
       });
     }
   };
+  console.log("imageWidth", imageWidth);
   const ArrowRightLeftIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_9__["default"], {
     fill: "white",
     className: "svg-no-fill"
   });
+  const units = [{
+    value: "px",
+    label: "px",
+    default: 0
+  }, {
+    value: "%",
+    label: "%",
+    default: 10
+  }, {
+    value: "em",
+    label: "em",
+    default: 0
+  }];
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.BlockControls, {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToolbarGroup, {
@@ -541,61 +556,52 @@ function Edit({
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Settings", "block-booster"),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
           style: {
-            marginTop: "10px",
+            display: "flex",
+            alignItems: "flex-end",
+            justifyContent: "space-between",
+            gap: "10px",
             marginBottom: "10px"
           },
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_libs_components_inspector_label__WEBPACK_IMPORTED_MODULE_6__.InspectorLabel, {
-            title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Image width", "block-booster"),
-            hideLayoutButton: true
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
-          __nextHasNoMarginBottom: true,
-          __next40pxDefaultSize: true,
-          value: imageWidth,
-          label: null,
-          onChange: handleWidthChange,
-          min: 0,
-          max: 500
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalUnitControl, {
+            __next40pxDefaultSize: true,
+            units: units,
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Width", "block-booster"),
+            value: imageWidth,
+            onChange: handleWidthChange,
+            min: 0,
+            style: {
+              flex: 1
+            }
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalUnitControl, {
+            __next40pxDefaultSize: true,
+            units: units,
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Height", "block-booster"),
+            value: imageHeight,
+            onChange: handleHeightChange,
+            min: 0,
+            style: {
+              flex: 1
+            }
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("label", {
           style: {
             display: "flex",
             alignItems: "center",
-            justifyContent: "space-between",
-            marginTop: "10px",
-            marginBottom: "10px"
+            fontSize: "12px",
+            marginBottom: "15px"
           },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_libs_components_inspector_label__WEBPACK_IMPORTED_MODULE_6__.InspectorLabel, {
-            title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Image height", "block-booster"),
-            hideLayoutButton: true
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("label", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
+            type: "checkbox",
+            checked: bindImageDimensions,
+            onChange: e => setAttributes({
+              bindImageDimensions: e.target.checked
+            }),
             style: {
-              display: "flex",
-              alignItems: "center",
-              fontSize: "12px",
-              whiteSpace: "nowrap",
-              marginLeft: "10px"
-            },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
-              type: "checkbox",
-              checked: bindImageDimensions,
-              onChange: e => setAttributes({
-                bindImageDimensions: e.target.checked
-              }),
-              style: {
-                marginRight: "5px"
-              }
-            }), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Link dimensions", "block-booster")]
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
-          __nextHasNoMarginBottom: true,
-          __next40pxDefaultSize: true,
-          value: imageHeight,
-          label: null,
-          onChange: handleHeightChange,
-          min: 0,
-          max: 500
+              marginRight: "5px"
+            }
+          }), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Link dimensions", "block-booster")]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
           __nextHasNoMarginBottom: true,
           __next40pxDefaultSize: true,
@@ -828,7 +834,7 @@ function Edit({
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
           style: {
             color: svgColor,
-            fontSize: `${imageWidth}px`,
+            fontSize: `${imageWidth}`,
             display: "inline-block"
           },
           dangerouslySetInnerHTML: {
@@ -839,8 +845,8 @@ function Edit({
         className: "block-booster-icon-and-text--left",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("img", {
           style: {
-            width: `${imageWidth}px`,
-            height: `${imageHeight}px`
+            width: `${imageWidth}`,
+            height: `${imageHeight}`
           },
           src: imageUrl,
           alt: imageName
