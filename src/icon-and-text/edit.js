@@ -57,6 +57,7 @@ export default function Edit({
 		imageWidth,
 		imageHeight,
 		svgColor,
+		bindImageDimensions,
 	},
 	setAttributes,
 	clientId,
@@ -147,6 +148,24 @@ export default function Edit({
 	const removeImage = () => {
 		setAttributes({ imageId: 0, imageUrl: "", imageName: "" });
 	};
+
+	// Handler for width/height change with binding
+	const handleWidthChange = (value) => {
+		if (bindImageDimensions) {
+			setAttributes({ imageWidth: value, imageHeight: value });
+		} else {
+			setAttributes({ imageWidth: value });
+		}
+	};
+
+	const handleHeightChange = (value) => {
+		if (bindImageDimensions) {
+			setAttributes({ imageWidth: value, imageHeight: value });
+		} else {
+			setAttributes({ imageHeight: value });
+		}
+	};
+
 	const ArrowRightLeftIcon = (
 		<ArrowRightLeft fill="white" className="svg-no-fill" />
 	);
@@ -177,30 +196,49 @@ export default function Edit({
 						__next40pxDefaultSize
 						value={imageWidth}
 						label={null}
-						onChange={(value) =>
-							setAttributes({
-								imageWidth: value,
-							})
-						}
+						onChange={handleWidthChange}
 						min={0}
 						max={500}
 					/>
-					<div style={{ marginTop: "10px", marginBottom: "10px" }}>
+					<div
+						style={{
+							display: "flex",
+							alignItems: "center",
+							justifyContent: "space-between",
+							marginTop: "10px",
+							marginBottom: "10px",
+						}}
+					>
 						<InspectorLabel
 							title={__("Image height", "block-booster")}
 							hideLayoutButton={true}
 						/>
+						<label
+							style={{
+								display: "flex",
+								alignItems: "center",
+								fontSize: "12px",
+								whiteSpace: "nowrap",
+								marginLeft: "10px",
+							}}
+						>
+							<input
+								type="checkbox"
+								checked={bindImageDimensions}
+								onChange={(e) =>
+									setAttributes({ bindImageDimensions: e.target.checked })
+								}
+								style={{ marginRight: "5px" }}
+							/>
+							{__("Link dimensions", "block-booster")}
+						</label>
 					</div>
 					<RangeControl
 						__nextHasNoMarginBottom
 						__next40pxDefaultSize
 						value={imageHeight}
 						label={null}
-						onChange={(value) =>
-							setAttributes({
-								imageHeight: value,
-							})
-						}
+						onChange={handleHeightChange}
 						min={0}
 						max={500}
 					/>

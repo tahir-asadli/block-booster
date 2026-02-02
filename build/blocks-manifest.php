@@ -456,6 +456,10 @@ return array(
 				'type' => 'number',
 				'default' => 32
 			),
+			'bindImageDimensions' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
 			'imageContent' => array(
 				'type' => 'string',
 				'default' => ''

@@ -49,6 +49,10 @@
       "type": "number",
       "default": 32
     },
+    "bindImageDimensions": {
+      "type": "boolean",
+      "default": false
+    },
     "imageContent": {
       "type": "string",
       "default": ""
