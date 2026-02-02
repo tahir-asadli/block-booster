@@ -55,6 +55,7 @@ export default function Edit({
 		tabletGap,
 		mobileGap,
 		imageWidth,
+		imageHeight,
 		svgColor,
 	},
 	setAttributes,
@@ -179,6 +180,25 @@ export default function Edit({
 						onChange={(value) =>
 							setAttributes({
 								imageWidth: value,
+							})
+						}
+						min={0}
+						max={500}
+					/>
+					<div style={{ marginTop: "10px", marginBottom: "10px" }}>
+						<InspectorLabel
+							title={__("Image height", "block-booster")}
+							hideLayoutButton={true}
+						/>
+					</div>
+					<RangeControl
+						__nextHasNoMarginBottom
+						__next40pxDefaultSize
+						value={imageHeight}
+						label={null}
+						onChange={(value) =>
+							setAttributes({
+								imageHeight: value,
 							})
 						}
 						min={0}
@@ -477,7 +497,7 @@ export default function Edit({
 					) : (
 						<div className="block-booster-icon-and-text--left">
 							<img
-								style={{ width: `${imageWidth}px` }}
+								style={{ width: `${imageWidth}px`, height: `${imageHeight}px` }}
 								src={imageUrl}
 								alt={imageName}
 							/>

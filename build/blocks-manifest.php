@@ -452,6 +452,10 @@ return array(
 				'type' => 'number',
 				'default' => 32
 			),
+			'imageHeight' => array(
+				'type' => 'number',
+				'default' => 32
+			),
 			'imageContent' => array(
 				'type' => 'string',
 				'default' => ''

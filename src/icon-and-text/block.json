@@ -45,6 +45,10 @@
 			"type": "number",
 			"default": 32
 		},
+		"imageHeight": {
+			"type": "number",
+			"default": 32
+		},
 		"imageContent": {
 			"type": "string",
 			"default": ""

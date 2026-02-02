@@ -20,6 +20,7 @@ $block_booster_tablet_gap      = ! empty( $attributes['tabletGap'] ) ? $attribut
 $block_booster_mobile_gap      = ! empty( $attributes['mobileGap'] ) ? $attributes['mobileGap'] : 0;
 $block_booster_svg_color       = ! empty( $attributes['svgColor'] ) ? $attributes['svgColor'] : '';
 $block_booster_image_width     = ! empty( $attributes['imageWidth'] ) ? $attributes['imageWidth'] : '';
+$block_booster_image_height    = ! empty( $attributes['imageHeight'] ) ? $attributes['imageHeight'] : '';
 $block_booster_image_content   = ! empty( $attributes['imageContent'] ) ? $attributes['imageContent'] : '';
 $block_booster_text            = ! empty( $attributes['text'] ) ? $attributes['text'] : '';
 $block_booster_image_url       = ! empty( $attributes['imageUrl'] ) ? $attributes['imageUrl'] : '';
@@ -80,7 +81,7 @@ $block_booster_svg_allowed_attributes         = array(
 				);
 				?>
 		<?php } else { ?>
-		<img src="<?php echo esc_url( $attributes['imageUrl'] ); ?>" alt="<?php echo esc_attr( $attributes['imageName'] ); ?>">
+		<img src="<?php echo esc_url( $attributes['imageUrl'] ); ?>" alt="<?php echo esc_attr( $attributes['imageName'] ); ?>" width="<?php echo esc_attr( $block_booster_image_width ); ?>" height="<?php echo esc_attr( $block_booster_image_height ); ?>">
 		<?php } ?>
 	<?php } ?>
 	</div>
@@ -97,8 +98,10 @@ $block_booster_svg_allowed_attributes         = array(
 	}
 	?>
 	<?php
-	$block_booster_icon_image_width = (int) $block_booster_image_width;
-	echo esc_attr( "font-size: {$block_booster_icon_image_width}px;" );
+	$block_booster_icon_image_width  = (int) $block_booster_image_width;
+	$block_booster_icon_image_height = (int) $block_booster_image_height;
+	echo esc_attr( "width: {$block_booster_icon_image_width}px;" );
+	echo esc_attr( "height: {$block_booster_icon_image_height}px;" );
 	?>
 	}
 
