@@ -571,6 +571,7 @@ function Edit({
             value: imageWidth,
             onChange: handleWidthChange,
             min: 0,
+            className: "block-booster-unit-control-no-margin",
             style: {
               flex: 1,
               margin: 0
@@ -582,6 +583,7 @@ function Edit({
             value: imageHeight,
             onChange: handleHeightChange,
             min: 0,
+            className: "block-booster-unit-control-no-margin",
             style: {
               flex: 1,
               margin: 0
