@@ -572,7 +572,8 @@ function Edit({
             onChange: handleWidthChange,
             min: 0,
             style: {
-              flex: 1
+              flex: 1,
+              margin: 0
             }
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalUnitControl, {
             __next40pxDefaultSize: true,
@@ -582,7 +583,8 @@ function Edit({
             onChange: handleHeightChange,
             min: 0,
             style: {
-              flex: 1
+              flex: 1,
+              margin: 0
             }
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("label", {

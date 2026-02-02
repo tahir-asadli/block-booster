@@ -210,7 +210,7 @@ export default function Edit({
 							value={imageWidth}
 							onChange={handleWidthChange}
 							min={0}
-							style={{ flex: 1 }}
+							style={{ flex: 1, margin: 0 }}
 						/>
 						<UnitControl
 							__next40pxDefaultSize
@@ -219,7 +219,7 @@ export default function Edit({
 							value={imageHeight}
 							onChange={handleHeightChange}
 							min={0}
-							style={{ flex: 1 }}
+							style={{ flex: 1, margin: 0 }}
 						/>
 					</div>
 					<label
