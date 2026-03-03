@@ -838,7 +838,8 @@ function Edit({
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
           style: {
             color: svgColor,
-            fontSize: `${imageWidth}`,
+            width: `${imageWidth}`,
+            height: `${imageHeight}`,
             display: "inline-block"
           },
           dangerouslySetInnerHTML: {

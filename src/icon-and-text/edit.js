@@ -526,7 +526,8 @@ export default function Edit({
 							<span
 								style={{
 									color: svgColor,
-									fontSize: `${imageWidth}`,
+									width: `${imageWidth}`,
+									height: `${imageHeight}`,
 									display: "inline-block",
 								}}
 								dangerouslySetInnerHTML={{ __html: imageContent }}
