@@ -404,11 +404,6 @@ function Edit(props) {
     postId,
     postType
   } = context;
-  let __experimentalSetPreviewDeviceType = device => {};
-  const siteEditor = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.useDispatch)("core/edit-site");
-  if (siteEditor) {
-    __experimentalSetPreviewDeviceType = siteEditor.__experimentalSetPreviewDeviceType;
-  }
   const [featuredImageId] = (0,_wordpress_core_data__WEBPACK_IMPORTED_MODULE_4__.useEntityProp)("postType", postType, "featured_media", postId);
   const media = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.useSelect)(select => {
     return featuredImageId ? select(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_4__.store).getMedia(featuredImageId) : null;

@@ -27,7 +27,7 @@ import "./editor.scss";
  * External dependencies
  */
 import { ArrowRightLeft } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 /**
  * Internal dependencies
@@ -56,12 +56,29 @@ export default function Edit({
 	clientId,
 }) {
 	const [layout, setLayout] = useState("desktop");
-	let __experimentalSetPreviewDeviceType = (device) => {};
-	const siteEditor = useDispatch("core/edit-site");
-	if (siteEditor) {
-		__experimentalSetPreviewDeviceType =
-			siteEditor.__experimentalSetPreviewDeviceType;
-	}
+	// Get device type
+	const deviceType = useSelect((select) => {
+		const { getDeviceType } = select("core/editor");
+		return getDeviceType()?.toLowerCase() || "desktop";
+	}, []);
+	// Update device type in block if it changes
+	useEffect(() => {
+		if (deviceType) {
+			setLayout(deviceType.toLowerCase());
+		}
+	}, [deviceType]);
+
+	// Set post and site editor device type
+	const postEditorDispatch = useDispatch("core/editor");
+	const siteEditorDispatch = useDispatch("core/edit-site");
+	const setEditorDeviceType = (type) => {
+		if (siteEditorDispatch?.__experimentalSetPreviewDeviceType) {
+			siteEditorDispatch.__experimentalSetPreviewDeviceType(type);
+		} else if (postEditorDispatch?.setDeviceType) {
+			postEditorDispatch.setDeviceType(type);
+		}
+	};
+
 	const innerBlockCount = useSelect(
 		(select) => select("core/block-editor").getBlocks(clientId).length,
 		[clientId],
@@ -136,7 +153,7 @@ export default function Edit({
 						defaultValue={layout}
 						onChange={(value) => {
 							setLayout(value);
-							__experimentalSetPreviewDeviceType(
+							setEditorDeviceType(
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"
@@ -193,7 +210,7 @@ export default function Edit({
 						defaultValue={layout}
 						onChange={(value) => {
 							setLayout(value);
-							__experimentalSetPreviewDeviceType(
+							setEditorDeviceType(
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"
@@ -265,7 +282,7 @@ export default function Edit({
 						defaultValue={layout}
 						onChange={(value) => {
 							setLayout(value);
-							__experimentalSetPreviewDeviceType(
+							setEditorDeviceType(
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"

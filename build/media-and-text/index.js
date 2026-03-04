@@ -482,11 +482,30 @@ function Edit({
   clientId
 }) {
   const [layout, setLayout] = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)("desktop");
-  let __experimentalSetPreviewDeviceType = device => {};
-  const siteEditor = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.useDispatch)("core/edit-site");
-  if (siteEditor) {
-    __experimentalSetPreviewDeviceType = siteEditor.__experimentalSetPreviewDeviceType;
-  }
+  // Get device type
+  const deviceType = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.useSelect)(select => {
+    const {
+      getDeviceType
+    } = select("core/editor");
+    return getDeviceType()?.toLowerCase() || "desktop";
+  }, []);
+  // Update device type in block if it changes
+  (0,react__WEBPACK_IMPORTED_MODULE_5__.useEffect)(() => {
+    if (deviceType) {
+      setLayout(deviceType.toLowerCase());
+    }
+  }, [deviceType]);
+
+  // Set post and site editor device type
+  const postEditorDispatch = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.useDispatch)("core/editor");
+  const siteEditorDispatch = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.useDispatch)("core/edit-site");
+  const setEditorDeviceType = type => {
+    if (siteEditorDispatch?.__experimentalSetPreviewDeviceType) {
+      siteEditorDispatch.__experimentalSetPreviewDeviceType(type);
+    } else if (postEditorDispatch?.setDeviceType) {
+      postEditorDispatch.setDeviceType(type);
+    }
+  };
   const innerBlockCount = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.useSelect)(select => select("core/block-editor").getBlocks(clientId).length, [clientId]);
   const classNames = [];
   if (innerBlockCount == 1) {
@@ -564,7 +583,7 @@ function Edit({
           defaultValue: layout,
           onChange: value => {
             setLayout(value);
-            __experimentalSetPreviewDeviceType(value == "desktop" ? "Desktop" : value == "tablet" ? "Tablet" : "Mobile");
+            setEditorDeviceType(value == "desktop" ? "Desktop" : value == "tablet" ? "Tablet" : "Mobile");
           }
         }), layout == "desktop" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
           __nextHasNoMarginBottom: true,
@@ -601,7 +620,7 @@ function Edit({
           defaultValue: layout,
           onChange: value => {
             setLayout(value);
-            __experimentalSetPreviewDeviceType(value == "desktop" ? "Desktop" : value == "tablet" ? "Tablet" : "Mobile");
+            setEditorDeviceType(value == "desktop" ? "Desktop" : value == "tablet" ? "Tablet" : "Mobile");
           }
         }), layout == "desktop" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalToggleGroupControl, {
           value: reversed,
@@ -659,7 +678,7 @@ function Edit({
           defaultValue: layout,
           onChange: value => {
             setLayout(value);
-            __experimentalSetPreviewDeviceType(value == "desktop" ? "Desktop" : value == "tablet" ? "Tablet" : "Mobile");
+            setEditorDeviceType(value == "desktop" ? "Desktop" : value == "tablet" ? "Tablet" : "Mobile");
           }
         }), layout == "desktop" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalToggleGroupControl, {
           value: stacked,

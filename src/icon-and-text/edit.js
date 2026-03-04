@@ -63,7 +63,6 @@ export default function Edit({
 	setAttributes,
 	clientId,
 }) {
-	const [layout, setLayout] = useState("desktop");
 	useEffect(() => {
 		if (imageUrl && isSVGFile(imageUrl)) {
 			fetch(imageUrl)
@@ -77,6 +76,7 @@ export default function Edit({
 		}
 	}, [imageUrl]);
 
+	const [layout, setLayout] = useState("desktop");
 	// Get device type
 	const deviceType = useSelect((select) => {
 		const { getDeviceType } = select("core/editor");

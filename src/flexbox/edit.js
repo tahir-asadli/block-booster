@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { __ } from "@wordpress/i18n";
-import { select, subscribe, useDispatch } from "@wordpress/data";
+import { select, subscribe, useSelect, useDispatch } from "@wordpress/data";
 import {
 	PanelBody,
 	RangeControl,
@@ -21,7 +21,7 @@ import "./editor.scss";
 /**
  * External dependencies
  */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
 	AlignVerticalJustifyEnd,
 	AlignVerticalJustifyStart,
@@ -96,27 +96,31 @@ export default function Edit(props) {
 		},
 		setAttributes,
 	} = props;
-	let previousDeviceType = select("core/editor").getDeviceType();
-	subscribe(() => {
-		const newDeviceType = select("core/editor").getDeviceType();
-
-		if (newDeviceType !== previousDeviceType) {
-			setLayout(newDeviceType?.toLowerCase());
-			previousDeviceType = newDeviceType;
-		}
-	});
 
 	const [layout, setLayout] = useState("desktop");
-	let __experimentalSetPreviewDeviceType = (device) => {};
-	const siteEditor = useDispatch("core/edit-site");
-	const editor = useDispatch("core/editor");
+	// Get device type
+	const deviceType = useSelect((select) => {
+		const { getDeviceType } = select("core/editor");
+		return getDeviceType()?.toLowerCase() || "desktop";
+	}, []);
+	// Update device type in block if it changes
+	useEffect(() => {
+		if (deviceType) {
+			setLayout(deviceType.toLowerCase());
+		}
+	}, [deviceType]);
 
-	if (siteEditor) {
-		__experimentalSetPreviewDeviceType =
-			siteEditor.__experimentalSetPreviewDeviceType;
-	} else if (editor) {
-		__experimentalSetPreviewDeviceType = editor.setDeviceType;
-	}
+	// Set post and site editor device type
+	const postEditorDispatch = useDispatch("core/editor");
+	const siteEditorDispatch = useDispatch("core/edit-site");
+	const setEditorDeviceType = (type) => {
+		if (siteEditorDispatch?.__experimentalSetPreviewDeviceType) {
+			siteEditorDispatch.__experimentalSetPreviewDeviceType(type);
+		} else if (postEditorDispatch?.setDeviceType) {
+			postEditorDispatch.setDeviceType(type);
+		}
+	};
+
 	const alignItemsStartIcon = <AlignVerticalJustifyStart width={17} />;
 	const alignItemsEndIcon = <AlignVerticalJustifyEnd width={17} />;
 	const alignItemsCenterIcon = <AlignVerticalJustifyCenter width={17} />;
@@ -333,7 +337,7 @@ export default function Edit(props) {
 						defaultValue={layout}
 						onChange={(value) => {
 							setLayout(value);
-							__experimentalSetPreviewDeviceType(
+							setEditorDeviceType(
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"
@@ -562,7 +566,7 @@ export default function Edit(props) {
 						defaultValue={layout}
 						onChange={(value) => {
 							setLayout(value);
-							__experimentalSetPreviewDeviceType(
+							setEditorDeviceType(
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"
@@ -696,7 +700,7 @@ export default function Edit(props) {
 						defaultValue={layout}
 						onChange={(value) => {
 							setLayout(value);
-							__experimentalSetPreviewDeviceType(
+							setEditorDeviceType(
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"
@@ -829,7 +833,7 @@ export default function Edit(props) {
 						defaultValue={layout}
 						onChange={(value) => {
 							setLayout(value);
-							__experimentalSetPreviewDeviceType(
+							setEditorDeviceType(
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"
@@ -916,7 +920,7 @@ export default function Edit(props) {
 						defaultValue={layout}
 						onChange={(value) => {
 							setLayout(value);
-							__experimentalSetPreviewDeviceType(
+							setEditorDeviceType(
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"
@@ -1003,7 +1007,7 @@ export default function Edit(props) {
 						defaultValue={layout}
 						onChange={(value) => {
 							setLayout(value);
-							__experimentalSetPreviewDeviceType(
+							setEditorDeviceType(
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"
@@ -1075,7 +1079,7 @@ export default function Edit(props) {
 						defaultValue={layout}
 						onChange={(value) => {
 							setLayout(value);
-							__experimentalSetPreviewDeviceType(
+							setEditorDeviceType(
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"
@@ -1211,7 +1215,7 @@ export default function Edit(props) {
 						defaultValue={layout}
 						onChange={(value) => {
 							setLayout(value);
-							__experimentalSetPreviewDeviceType(
+							setEditorDeviceType(
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"
@@ -1344,7 +1348,7 @@ export default function Edit(props) {
 						defaultValue={layout}
 						onChange={(value) => {
 							setLayout(value);
-							__experimentalSetPreviewDeviceType(
+							setEditorDeviceType(
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"
@@ -1431,7 +1435,7 @@ export default function Edit(props) {
 						defaultValue={layout}
 						onChange={(value) => {
 							setLayout(value);
-							__experimentalSetPreviewDeviceType(
+							setEditorDeviceType(
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"
@@ -1520,7 +1524,7 @@ export default function Edit(props) {
 						defaultValue={layout}
 						onChange={(value) => {
 							setLayout(value);
-							__experimentalSetPreviewDeviceType(
+							setEditorDeviceType(
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"

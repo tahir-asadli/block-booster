@@ -53,12 +53,6 @@ export default function Edit(props) {
 	} = props;
 	const { postId, postType } = context;
 
-	let __experimentalSetPreviewDeviceType = (device) => {};
-	const siteEditor = useDispatch("core/edit-site");
-	if (siteEditor) {
-		__experimentalSetPreviewDeviceType =
-			siteEditor.__experimentalSetPreviewDeviceType;
-	}
 	const [featuredImageId] = useEntityProp(
 		"postType",
 		postType,

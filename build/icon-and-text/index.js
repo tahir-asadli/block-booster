@@ -406,7 +406,6 @@ function Edit({
   setAttributes,
   clientId
 }) {
-  const [layout, setLayout] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("desktop");
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     if (imageUrl && (0,_libs_global__WEBPACK_IMPORTED_MODULE_7__.isSVGFile)(imageUrl)) {
       fetch(imageUrl).then(response => response.text()).then(svgText => {
@@ -418,7 +417,7 @@ function Edit({
       });
     }
   }, [imageUrl]);
-
+  const [layout, setLayout] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("desktop");
   // Get device type
   const deviceType = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(select => {
     const {
