@@ -9,16 +9,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-$block_booster_reversed         = ! empty( $attributes['reversed'] ) && 1 === $attributes['reversed'];
-$block_booster_tablet_reversed  = ! empty( $attributes['tabletReversed'] ) && 1 === $attributes['tabletReversed'];
-$block_booster_mobile_reversed  = ! empty( $attributes['mobileReversed'] ) && 1 === $attributes['mobileReversed'];
-$block_booster_stacked          = ! empty( $attributes['stacked'] ) && 1 === $attributes['stacked'];
-$block_booster_tablet_stacked   = ! empty( $attributes['tabletStacked'] ) && 1 === $attributes['tabletStacked'];
-$block_booster_mobile_stacked   = ! empty( $attributes['mobileStacked'] ) && 1 === $attributes['mobileStacked'];
+$block_booster_reversed         = ! empty( $attributes['reversed'] ) && true === $attributes['reversed'];
+$block_booster_tablet_reversed  = ! empty( $attributes['tabletReversed'] ) && true === $attributes['tabletReversed'];
+$block_booster_mobile_reversed  = ! empty( $attributes['mobileReversed'] ) && true === $attributes['mobileReversed'];
+$block_booster_stacked          = ! empty( $attributes['stacked'] ) && true === $attributes['stacked'];
+$block_booster_tablet_stacked   = ! empty( $attributes['tabletStacked'] ) && true === $attributes['tabletStacked'];
+$block_booster_mobile_stacked   = ! empty( $attributes['mobileStacked'] ) && true === $attributes['mobileStacked'];
 $block_booster_gap              = ! empty( $attributes['gap'] ) ? $attributes['gap'] : 0;
 $block_booster_tablet_gap       = ! empty( $attributes['tabletGap'] ) ? $attributes['tabletGap'] : 0;
 $block_booster_mobile_gap       = ! empty( $attributes['mobileGap'] ) ? $attributes['mobileGap'] : 0;
-$block_booster_has_single_child = count( $block->inner_blocks ) == 1;
+$block_booster_has_single_child = count( $block->inner_blocks ) == true;
 $block_booster_classes          = array();
 if ( $block_booster_reversed ) {
 	$block_booster_classes[] = 'block-booster-media-and-text--is-reversed';
@@ -65,7 +65,6 @@ $block_booster_wrapper_attrs = get_block_wrapper_attributes( $block_booster_addi
 			echo '<div>' . wp_kses_post( $block_booster_inner_block->render() ) . '</div>';
 		}
 	}
-	?>
 	?>
 	</div>
 </div>
