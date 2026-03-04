@@ -744,7 +744,7 @@ function Edit({
           render: ({
             open
           }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-            class: `block-booster-media-and-text--left ${imageUrl ? "has-image" : "has-no-image"}`,
+            className: `block-booster-media-and-text--left ${imageUrl ? "has-image" : "has-no-image"}`,
             children: imageUrl ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
                 src: imageUrl,

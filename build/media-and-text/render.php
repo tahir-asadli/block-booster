@@ -18,7 +18,7 @@ $block_booster_mobile_stacked   = ! empty( $attributes['mobileStacked'] ) && tru
 $block_booster_gap              = ! empty( $attributes['gap'] ) ? $attributes['gap'] : 0;
 $block_booster_tablet_gap       = ! empty( $attributes['tabletGap'] ) ? $attributes['tabletGap'] : 0;
 $block_booster_mobile_gap       = ! empty( $attributes['mobileGap'] ) ? $attributes['mobileGap'] : 0;
-$block_booster_has_single_child = count( $block->inner_blocks ) == true;
+$block_booster_has_single_child = count( $block->inner_blocks ) === 1;
 $block_booster_classes          = array();
 if ( $block_booster_reversed ) {
 	$block_booster_classes[] = 'block-booster-media-and-text--is-reversed';
@@ -69,42 +69,43 @@ $block_booster_wrapper_attrs = get_block_wrapper_attributes( $block_booster_addi
 	</div>
 </div>
 <style>
-	<?php echo esc_attr( BLOCK_BOOSTER_MIN_DESKTOP_BREAKING_POINT ); ?>
-	;
-
-	?>#<?php echo esc_attr( $block_booster_additional_attributes['id'] ); ?> {
+	@media only screen and (min-width:
 	<?php
-	$block_booster_gap_desktop = (int) $block_booster_gap;
-	echo esc_attr( "gap: {$block_booster_gap_desktop}px;" );
+	echo esc_html( BLOCK_BOOSTER_MIN_DESKTOP_BREAKING_POINT );
 	?>
-	<?php echo esc_attr( "gap: {$block_booster_gap}px;" ); ?>
+	) {
+	#<?php	echo esc_attr( $block_booster_additional_attributes['id'] ); ?>
+	{
+		<?php echo esc_html( "gap: {$block_booster_gap}px;" ); ?>
 	}
 	}
 
-	<?php echo esc_attr( BLOCK_BOOSTER_MIN_TABLET_BREAKING_POINT ); ?>
-	;
-	?>
-	<?php echo esc_attr( BLOCK_BOOSTER_MAX_TABLET_BREAKING_POINT ); ?>
-	;
-
-	?>#<?php echo esc_attr( $block_booster_additional_attributes['id'] ); ?> {
+	@media only screen and (min-width: <?php echo esc_html( BLOCK_BOOSTER_MIN_TABLET_BREAKING_POINT ); ?>
+	) and (max-width:
 	<?php
-	$block_booster_gap_tablet = (int) $block_booster_tablet_gap;
-	echo esc_attr( "gap: {$block_booster_gap_tablet}px;" );
+	echo esc_html( BLOCK_BOOSTER_MAX_TABLET_BREAKING_POINT );
 	?>
-	<?php echo esc_attr( "gap: {$block_booster_tablet_gap}px;" ); ?>
-	}
-	}
-
-	<?php echo esc_attr( BLOCK_BOOSTER_MAX_MOBILE_BREAKING_POINT ); ?>
-	;
-
-	?>#<?php echo esc_attr( $block_booster_additional_attributes['id'] ); ?> {
+	) {
+	#
 	<?php
-	$block_booster_gap_mobile = (int) $block_booster_mobile_gap;
-	echo esc_attr( "gap: {$block_booster_gap_mobile}px;" );
+	echo esc_attr( $block_booster_additional_attributes['id'] );
 	?>
-	<?php echo esc_attr( "gap: {$block_booster_mobile_gap}px;" ); ?>
+	{
+		<?php echo esc_html( "gap: {$block_booster_tabletGap}px;" ); ?>
+	}
+	}
+
+	@media only screen and (max-width:
+	<?php
+	echo esc_html( BLOCK_BOOSTER_MAX_MOBILE_BREAKING_POINT );
+	?>
+	) {
+	#
+	<?php
+	echo esc_attr( $block_booster_additional_attributes['id'] );
+	?>
+	{
+		<?php echo esc_html( "gap: {$block_booster_mobileGap}px;" ); ?>
 	}
 	}
 </style>

@@ -360,7 +360,7 @@ export default function Edit({
 						onSelect={onImageSelect}
 						render={({ open }) => (
 							<div
-								class={`block-booster-media-and-text--left ${
+								className={`block-booster-media-and-text--left ${
 									imageUrl ? "has-image" : "has-no-image"
 								}`}
 							>
