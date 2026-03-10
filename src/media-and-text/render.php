@@ -40,7 +40,6 @@ if ( $block_booster_mobile_stacked ) {
 	$block_booster_classes[] = 'block-booster-media-and-text--mobile-is-stacked';
 }
 
-
 if ( $block_booster_has_single_child ) {
 	$block_booster_classes[] = 'block-booster-media-and-text--single-child';
 }
@@ -70,42 +69,21 @@ $block_booster_wrapper_attrs = get_block_wrapper_attributes( $block_booster_addi
 </div>
 <style>
 	@media only screen and (min-width:
-	<?php
-	echo esc_html( BLOCK_BOOSTER_MIN_DESKTOP_BREAKING_POINT );
-	?>
-	) {
-	#<?php	echo esc_attr( $block_booster_additional_attributes['id'] ); ?>
-	{
-		<?php echo esc_html( "gap: {$block_booster_gap}px;" ); ?>
+	<?php	echo esc_attr( BLOCK_BOOSTER_MIN_DESKTOP_BREAKING_POINT ); ?>) {
+	#<?php	echo esc_attr( $block_booster_additional_attributes['id'] ); ?>	{
+		<?php echo esc_attr( "gap: {$block_booster_gap}px;" ); ?>
 	}
 	}
 
-	@media only screen and (min-width: <?php echo esc_html( BLOCK_BOOSTER_MIN_TABLET_BREAKING_POINT ); ?>
-	) and (max-width:
-	<?php
-	echo esc_html( BLOCK_BOOSTER_MAX_TABLET_BREAKING_POINT );
-	?>
-	) {
-	#
-	<?php
-	echo esc_attr( $block_booster_additional_attributes['id'] );
-	?>
-	{
-		<?php echo esc_html( "gap: {$block_booster_tabletGap}px;" ); ?>
+	@media only screen and (min-width: <?php echo esc_attr( BLOCK_BOOSTER_MIN_TABLET_BREAKING_POINT ); ?>) and (max-width: <?php echo esc_attr( BLOCK_BOOSTER_MAX_TABLET_BREAKING_POINT ); ?>) {
+	#<?php echo esc_attr( $block_booster_additional_attributes['id'] ); ?> {
+		<?php echo esc_attr( "gap: {$block_booster_tablet_gap}px;" ); ?>
 	}
 	}
 
-	@media only screen and (max-width:
-	<?php
-	echo esc_html( BLOCK_BOOSTER_MAX_MOBILE_BREAKING_POINT );
-	?>
-	) {
-	#
-	<?php
-	echo esc_attr( $block_booster_additional_attributes['id'] );
-	?>
-	{
-		<?php echo esc_html( "gap: {$block_booster_mobileGap}px;" ); ?>
+	@media only screen and (max-width: <?php echo esc_attr( BLOCK_BOOSTER_MAX_MOBILE_BREAKING_POINT ); ?>) {
+	#<?php echo esc_attr( $block_booster_additional_attributes['id'] ); ?> {
+		<?php echo esc_attr( "gap: {$block_booster_mobile_gap}px;" ); ?>
 	}
 	}
 </style>
