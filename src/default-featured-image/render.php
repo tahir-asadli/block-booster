@@ -25,11 +25,14 @@ if ( $block_booster_show_featured_image && $block_booster_post_thumbnail ) {
 	$block_booster_image_url = $block_booster_post_thumbnail;
 	$block_booster_image_alt = 'Post image';
 }
-$block_booster_styles                         = '';
-$block_booster_styles                        .= 'height:' . $block_booster_height . ';';
-$block_booster_additional_attributes['class'] = join( ' ', $block_booster_classes );
-$block_booster_additional_attributes['id']    = 'block-booster-' . uniqid();
-$block_booster_additional_attributes['style'] = $block_booster_styles;
+$block_booster_styles  = '';
+$block_booster_styles .= 'height:' . $block_booster_height . ';';
+
+$block_booster_additional_attributes = array(
+	'class' => join( ' ', $block_booster_classes ),
+	'id'    => wp_unique_id( 'block-booster-' ),
+	'style' => $block_booster_styles,
+);
 ?>
 <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 <div <?php echo get_block_wrapper_attributes( $block_booster_additional_attributes ); ?>>

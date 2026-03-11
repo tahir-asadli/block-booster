@@ -28,9 +28,11 @@ if ( $block_booster_show_search_icon ) {
 if ( $block_booster_show_category ) {
 	$block_booster_classes[] = 'show-category';
 }
-$block_booster_additional_attributes['class'] = join( ' ', $block_booster_classes );
-$block_booster_additional_attributes['id']    = 'block-booster-' . uniqid();
-$block_booster_categories                     = get_categories();
+$block_booster_additional_attributes = array(
+	'class' => join( ' ', $block_booster_classes ),
+	'id'    => wp_unique_id( 'block-booster-' ),
+);
+$block_booster_categories            = get_categories();
 ?>
 <div class="block-booster-search-container">
 	<form action="<?php echo esc_url( home_url( '/' ) ); ?>">

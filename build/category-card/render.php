@@ -40,9 +40,11 @@ if ( $block_booster_vertical ) {
 if ( $block_booster_disable_css ) {
 	$block_booster_classes[] = 'wp-block-block-booster-category-card--no-css';
 }
-$block_booster_additional_attributes['class'] = join( ' ', $block_booster_classes );
-$block_booster_additional_attributes['id']    = 'block-booster-' . uniqid();
-$block_booster_image_extension                = '';
+$block_booster_additional_attributes = array(
+	'class' => join( ' ', $block_booster_classes ),
+	'id'    => wp_unique_id( 'block-booster-' ),
+);
+$block_booster_image_extension       = '';
 if ( $block_booster_image_url ) {
 	$block_booster_image_extension = pathinfo( $block_booster_image_url, PATHINFO_EXTENSION );
 }

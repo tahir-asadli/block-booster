@@ -204,8 +204,10 @@ $block_booster_row_gap        = ! empty( $attributes['rowGap'] ) && $attributes[
 $block_booster_tablet_row_gap = ! empty( $attributes['tabletRowGap'] ) && $attributes['tabletRowGap'] > 0 ? $attributes['tabletRowGap'] . $block_booster_tablet_row_gap_unit : 0;
 $block_booster_mobile_row_gap = ! empty( $attributes['mobileRowGap'] ) && $attributes['mobileRowGap'] > 0 ? $attributes['mobileRowGap'] . $block_booster_mobile_row_gap_unit : 0;
 
-$block_booster_additional_attributes['class'] = join( ' ', $block_booster_classes );
-$block_booster_additional_attributes['id']    = 'block-booster-' . uniqid();
+$block_booster_additional_attributes = array(
+	'class' => join( ' ', $block_booster_classes ),
+	'id'    => wp_unique_id( 'block-booster-' ),
+);
 
 $block_booster__mobile_styles    = ( 'custom' === $block_booster_width_type && '' !== $block_booster_width ) || $block_booster_column_gap || $block_booster_row_gap;
 $block_booster_has_mobile_styles = ( 'custom' === $block_booster_tablet_width_type && '' !== $block_booster_tablet_width ) || $block_booster_tablet_column_gap || $block_booster_tablet_row_gap;

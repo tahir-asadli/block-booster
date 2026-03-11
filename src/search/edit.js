@@ -173,7 +173,7 @@ export default function Edit({
 			>
 				<div {...blockProps}>
 					{attributes.showCategory && (
-						<select name="cat" class="search-category">
+						<select name="cat" className="search-category">
 							{attributes.categoryText && (
 								<option value="">{attributes.categoryText}</option>
 							)}
@@ -183,10 +183,10 @@ export default function Edit({
 					<input
 						name="s"
 						type="search"
-						class="search-input"
+						className="search-input"
 						placeholder={attributes.searchPlaceholder}
 					/>
-					<button type="submit" class="search-button">
+					<button type="submit" className="search-button">
 						{attributes.showSearchIcon ? (
 							<span dangerouslySetInnerHTML={{ __html: "&nbsp;" }} />
 						) : (

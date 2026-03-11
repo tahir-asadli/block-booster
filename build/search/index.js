@@ -194,7 +194,7 @@ function Edit({
         ...blockProps,
         children: [attributes.showCategory && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("select", {
           name: "cat",
-          class: "search-category",
+          className: "search-category",
           children: attributes.categoryText && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
             value: "",
             children: attributes.categoryText
@@ -202,11 +202,11 @@ function Edit({
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
           name: "s",
           type: "search",
-          class: "search-input",
+          className: "search-input",
           placeholder: attributes.searchPlaceholder
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
           type: "submit",
-          class: "search-button",
+          className: "search-button",
           children: attributes.showSearchIcon ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
             dangerouslySetInnerHTML: {
               __html: "&nbsp;"

@@ -47,10 +47,12 @@ if ( $block_booster_mobile_stacked ) {
 	$block_booster_classes[] = 'block-booster-icon-and-text--mobile-is-stacked';
 }
 
+$block_booster_additional_attributes = array(
+	'class' => join( ' ', $block_booster_classes ),
+	'id'    => wp_unique_id( 'block-booster-' ),
+);
 
-$block_booster_additional_attributes['class'] = join( ' ', $block_booster_classes );
-$block_booster_additional_attributes['id']    = 'block-booster-' . uniqid();
-$block_booster_svg_allowed_attributes         = array(
+$block_booster_svg_allowed_attributes = array(
 	'svg'  => array(
 		'class'       => true,
 		'aria-hidden' => true,

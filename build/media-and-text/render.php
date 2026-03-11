@@ -43,8 +43,10 @@ if ( $block_booster_mobile_stacked ) {
 if ( $block_booster_has_single_child ) {
 	$block_booster_classes[] = 'block-booster-media-and-text--single-child';
 }
-$block_booster_additional_attributes['class'] = join( ' ', $block_booster_classes );
-$block_booster_additional_attributes['id']    = 'block-booster-' . uniqid();
+$block_booster_additional_attributes = array(
+	'class' => join( ' ', $block_booster_classes ),
+	'id'    => wp_unique_id( 'block-booster-' ),
+);
 
 // Prepare wrapper attributes safely.
 $block_booster_wrapper_attrs = get_block_wrapper_attributes( $block_booster_additional_attributes );
