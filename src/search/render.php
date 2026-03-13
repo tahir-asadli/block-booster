@@ -35,7 +35,7 @@ $block_booster_additional_attributes = array(
 $block_booster_categories            = get_categories();
 ?>
 <div class="block-booster-search-container">
-	<form action="<?php echo esc_url( home_url( '/' ) ); ?>">
+	<form method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
   <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	<div <?php echo get_block_wrapper_attributes( $block_booster_additional_attributes ); ?>>
 		<?php if ( $block_booster_show_category && ! empty( $block_booster_categories ) ) { ?>

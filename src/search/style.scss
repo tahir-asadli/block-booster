@@ -37,6 +37,8 @@
 			border-radius: 0;
 			background-color: transparent;
 			border: none;
+		}
+		button[type="submit"] {
 			font-family: inherit;
 			font-size: inherit;
 			font-weight: inherit;
@@ -47,8 +49,7 @@
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
-			background-color: transparent;
-			background-color: #eee;
+			background-color: #eeeeee;
 			width: 50%;
 			cursor: pointer;
 			flex-shrink: 0;
