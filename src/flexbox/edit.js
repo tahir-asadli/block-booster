@@ -285,45 +285,42 @@ export default function Edit(props) {
 	const blockProps = useBlockProps({
 		className: classNames.join(" "),
 		style: {
-			width: `${
-				layout == "desktop"
+			width: `${layout == "desktop"
 					? widthType == "custom" && width > 0
 						? `${width}${widthUnit}`
 						: "initial"
 					: layout == "tablet"
-					? tabletWidthType == "custom" && tabletWidth > 0
-						? `${tabletWidth}${tabletWidthUnit}`
-						: "initial"
-					: mobileWidthType == "custom" && mobileWidth > 0
-					? `${mobileWidth}${mobileWidthUnit}`
-					: "initial"
-			}`,
-			columnGap: `${
-				layout == "desktop"
+						? tabletWidthType == "custom" && tabletWidth > 0
+							? `${tabletWidth}${tabletWidthUnit}`
+							: "initial"
+						: mobileWidthType == "custom" && mobileWidth > 0
+							? `${mobileWidth}${mobileWidthUnit}`
+							: "initial"
+				}`,
+			columnGap: `${layout == "desktop"
 					? columnGap > 0
 						? `${columnGap}${columnGapUnit}`
 						: "initial"
 					: layout == "tablet"
-					? tabletColumnGap > 0
-						? `${tabletColumnGap}${tabletColumnGapUnit}`
-						: "initial"
-					: mobileColumnGap > 0
-					? `${mobileColumnGap}${mobileColumnGapUnit}`
-					: "initial"
-			}`,
-			rowGap: `${
-				layout == "desktop"
+						? tabletColumnGap > 0
+							? `${tabletColumnGap}${tabletColumnGapUnit}`
+							: "initial"
+						: mobileColumnGap > 0
+							? `${mobileColumnGap}${mobileColumnGapUnit}`
+							: "initial"
+				}`,
+			rowGap: `${layout == "desktop"
 					? rowGap > 0
 						? `${rowGap}${rowGapUnit}`
 						: "initial"
 					: layout == "tablet"
-					? tabletRowGap > 0
-						? `${tabletRowGap}${tabletRowGapUnit}`
-						: "initial"
-					: mobileRowGap > 0
-					? `${mobileRowGap}${mobileRowGapUnit}`
-					: "initial"
-			}`,
+						? tabletRowGap > 0
+							? `${tabletRowGap}${tabletRowGapUnit}`
+							: "initial"
+						: mobileRowGap > 0
+							? `${mobileRowGap}${mobileRowGapUnit}`
+							: "initial"
+				}`,
 		},
 	});
 	const innerBlocksProps = useInnerBlocksProps(blockProps);
@@ -341,8 +338,8 @@ export default function Edit(props) {
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"
-									? "Tablet"
-									: "Mobile",
+										? "Tablet"
+										: "Mobile",
 							);
 						}}
 					/>
@@ -570,8 +567,8 @@ export default function Edit(props) {
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"
-									? "Tablet"
-									: "Mobile",
+										? "Tablet"
+										: "Mobile",
 							);
 						}}
 					/>
@@ -704,8 +701,8 @@ export default function Edit(props) {
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"
-									? "Tablet"
-									: "Mobile",
+										? "Tablet"
+										: "Mobile",
 							);
 						}}
 					/>
@@ -837,8 +834,8 @@ export default function Edit(props) {
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"
-									? "Tablet"
-									: "Mobile",
+										? "Tablet"
+										: "Mobile",
 							);
 						}}
 					/>
@@ -924,8 +921,8 @@ export default function Edit(props) {
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"
-									? "Tablet"
-									: "Mobile",
+										? "Tablet"
+										: "Mobile",
 							);
 						}}
 					/>
@@ -1011,8 +1008,8 @@ export default function Edit(props) {
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"
-									? "Tablet"
-									: "Mobile",
+										? "Tablet"
+										: "Mobile",
 							);
 						}}
 					/>
@@ -1083,8 +1080,8 @@ export default function Edit(props) {
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"
-									? "Tablet"
-									: "Mobile",
+										? "Tablet"
+										: "Mobile",
 							);
 						}}
 					/>
@@ -1219,8 +1216,8 @@ export default function Edit(props) {
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"
-									? "Tablet"
-									: "Mobile",
+										? "Tablet"
+										: "Mobile",
 							);
 						}}
 					/>
@@ -1352,8 +1349,8 @@ export default function Edit(props) {
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"
-									? "Tablet"
-									: "Mobile",
+										? "Tablet"
+										: "Mobile",
 							);
 						}}
 					/>
@@ -1439,8 +1436,8 @@ export default function Edit(props) {
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"
-									? "Tablet"
-									: "Mobile",
+										? "Tablet"
+										: "Mobile",
 							);
 						}}
 					/>
@@ -1528,8 +1525,8 @@ export default function Edit(props) {
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"
-									? "Tablet"
-									: "Mobile",
+										? "Tablet"
+										: "Mobile",
 							);
 						}}
 					/>
