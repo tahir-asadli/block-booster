@@ -22,6 +22,7 @@ if (!function_exists('get_plugin_data')) {
 
 require_once __DIR__ . '/includes/class-flexbox-block.php';
 require_once __DIR__ . '/includes/class-icon-and-text-block.php';
+require_once __DIR__ . '/includes/class-category-card-block.php';
 $block_booster_plugin_data = get_plugin_data(__FILE__, false, false);
 
 

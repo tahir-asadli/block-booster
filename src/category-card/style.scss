@@ -1,6 +1,7 @@
 .wp-block-block-booster-category-card:not(
 		.wp-block-block-booster-category-card--no-css
-	) {
+	),
+.block-booster-category-card:not(.block-booster-category-card--no-css) {
 	box-sizing: border-box;
 	width: 100%;
 	display: flex;
@@ -8,7 +9,7 @@
 	height: 100%;
 	border-radius: 6px;
 	text-decoration: none;
-	.wp-block-block-booster-category-card--image-wrapper {
+	.block-booster-category-card--image-wrapper {
 		display: flex;
 		border: solid 1px #ddd;
 		width: 64px;
@@ -23,7 +24,7 @@
 			height: 100%;
 			object-fit: cover;
 		}
-		&.wp-block-block-booster-category-card--type-svg {
+		&.block-booster-category-card--type-svg {
 			img {
 				width: 32px;
 				aspect-ratio: 1;
@@ -31,27 +32,27 @@
 			}
 		}
 	}
-	.wp-block-block-booster-category-card--left,
-	.wp-block-block-booster-category-card--right {
+	.block-booster-category-card--left,
+	.block-booster-category-card--right {
 		display: flex;
 	}
-	.wp-block-block-booster-category-card--left {
+	.block-booster-category-card--left {
 		align-items: center;
 	}
-	.wp-block-block-booster-category-card--right {
+	.block-booster-category-card--right {
 		flex-direction: column;
 		span {
 			display: flex;
-			&.wp-block-block-booster-category-card--name {
+			&.block-booster-category-card--name {
 				color: black;
 				font-weight: bold;
 			}
-			&.wp-block-block-booster-category-card--count {
+			&.block-booster-category-card--count {
 				color: gray;
 			}
 		}
 	}
-	&.wp-block-block-booster-category-card--vertical {
+	&.block-booster-category-card--vertical {
 		flex-direction: column;
 	}
 }
