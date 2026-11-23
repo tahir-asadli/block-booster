@@ -119,6 +119,7 @@ final class IconAndText_Block
       if ($rules) {
         $css .= sprintf('@media %s{#%s{%s}}', $media, $svg_selector, $rules);
       }
+      $rules = '';
       foreach (self::STYLE_PROPS as $name => $property) {
         $key = $this->attribute_key($breakpoint, $name);
         if (empty($this->attributes[$key])) {

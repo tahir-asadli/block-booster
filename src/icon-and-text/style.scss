@@ -1,4 +1,5 @@
-.block-booster-icon-and-text {
+.block-booster-icon-and-text,
+.wp-block-block-booster-icon-and-text {
 	width: 100%;
 	display: flex;
 	align-items: center;
@@ -6,6 +7,7 @@
 	> * {
 		min-width: 0;
 		&.block-booster-icon-and-text--left {
+			display: inline-flex;
 			img {
 				display: block;
 				margin: 0;
