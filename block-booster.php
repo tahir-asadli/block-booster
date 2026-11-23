@@ -22,7 +22,7 @@ if (!function_exists('get_plugin_data')) {
 
 require_once __DIR__ . '/includes/class-flexbox-block.php';
 require_once __DIR__ . '/includes/class-icon-and-text-block.php';
-$block_booster_plugin_data = get_plugin_data(__FILE__);
+$block_booster_plugin_data = get_plugin_data(__FILE__, false, false);
 
 
 if (!defined('BLOCK_BOOSTER_VERSION')) {

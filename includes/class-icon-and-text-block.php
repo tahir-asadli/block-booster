@@ -24,15 +24,14 @@ final class IconAndText_Block
     'stacked' => 'stacked',
   ];
 
-
   private const STYLE_PROPS = array(
-    'width' => 'width',
-    'columnGap' => 'column-gap',
-    'rowGap' => 'row-gap',
-    'top' => 'top',
-    'right' => 'right',
-    'bottom' => 'bottom',
-    'left' => 'left',
+    'gap' => 'gap',
+  );
+
+  private const SVG_STYLE_PROPS = array(
+    'imageWidth' => 'width',
+    'imageHeight' => 'height',
+    'svgColor' => 'color'
   );
 
   private const BREAKPOINTS = array(
@@ -46,7 +45,7 @@ final class IconAndText_Block
     $this->block_name = $block_name;
     $this->id = wp_unique_id($this->block_name . '-');
     $this->attributes = $attributes;
-    // $this->add_inline_styles();
+    $this->add_inline_styles();
   }
 
   private function attribute_key(string $breakpoint, string $name): string
@@ -95,6 +94,53 @@ final class IconAndText_Block
       }
     }
     return $classes;
+
+  }
+
+
+
+  public function add_inline_styles()
+  {
+    $css = '';
+    foreach (self::BREAKPOINTS as $breakpoint => $media) {
+      $rules = '';
+      $svg_selector = $this->id . ' svg';
+
+      foreach (self::SVG_STYLE_PROPS as $name => $property) {
+        $key = $this->attribute_key($breakpoint, $name);
+        if (empty($this->attributes[$key])) {
+          continue;
+        }
+        $declaration = safecss_filter_attr($property . ':' . $this->attributes[$key]);
+        if ($declaration) {
+          $rules .= $declaration . ';';
+        }
+      }
+      if ($rules) {
+        $css .= sprintf('@media %s{#%s{%s}}', $media, $svg_selector, $rules);
+      }
+      foreach (self::STYLE_PROPS as $name => $property) {
+        $key = $this->attribute_key($breakpoint, $name);
+        if (empty($this->attributes[$key])) {
+          continue;
+        }
+        $declaration = safecss_filter_attr($property . ':' . $this->attributes[$key]);
+        if ($declaration) {
+          $rules .= $declaration . ';';
+        }
+      }
+      if ($rules) {
+        $css .= sprintf('@media %s{#%s{%s}}', $media, $this->id, $rules);
+      }
+    }
+    if (!empty($css)) {
+      wp_register_style('block-booster', false, [], '0.1.1');
+      wp_enqueue_style('block-booster');
+      wp_add_inline_style(
+        'block-booster',
+        $css
+      );
+    }
 
   }
 }

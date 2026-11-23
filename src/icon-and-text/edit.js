@@ -152,8 +152,6 @@ export default function Edit({
 
 	// Handler for width/height change with binding
 	const handleWidthChange = (value) => {
-		console.log("value", value);
-
 		if (bindImageDimensions) {
 			setAttributes({ imageWidth: value, imageHeight: value });
 		} else {
@@ -168,7 +166,6 @@ export default function Edit({
 			setAttributes({ imageHeight: value });
 		}
 	};
-	console.log("imageWidth", imageWidth);
 
 	const ArrowRightLeftIcon = (
 		<ArrowRightLeft fill="white" className="svg-no-fill" />
@@ -262,17 +259,17 @@ export default function Edit({
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"
-									? "Tablet"
-									: "Mobile",
+										? "Tablet"
+										: "Mobile",
 							);
 						}}
 					/>
 					{layout == "desktop" ? (
-						<RangeControl
-							__nextHasNoMarginBottom
+						<UnitControl
 							__next40pxDefaultSize
-							value={gap}
+							units={units}
 							label={null}
+							value={gap}
 							onChange={(value) =>
 								setAttributes({
 									gap: value,
@@ -282,11 +279,11 @@ export default function Edit({
 							max={100}
 						/>
 					) : layout == "tablet" ? (
-						<RangeControl
-							__nextHasNoMarginBottom
+						<UnitControl
 							__next40pxDefaultSize
-							value={tabletGap}
+							units={units}
 							label={null}
+							value={tabletGap}
 							onChange={(value) =>
 								setAttributes({
 									tabletGap: value,
@@ -296,11 +293,11 @@ export default function Edit({
 							max={100}
 						/>
 					) : (
-						<RangeControl
-							__nextHasNoMarginBottom
+						<UnitControl
 							__next40pxDefaultSize
-							value={mobileGap}
+							units={units}
 							label={null}
+							value={mobileGap}
 							onChange={(value) =>
 								setAttributes({
 									mobileGap: value,
@@ -319,8 +316,8 @@ export default function Edit({
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"
-									? "Tablet"
-									: "Mobile",
+										? "Tablet"
+										: "Mobile",
 							);
 						}}
 					/>
@@ -391,8 +388,8 @@ export default function Edit({
 								value == "desktop"
 									? "Desktop"
 									: value == "tablet"
-									? "Tablet"
-									: "Mobile",
+										? "Tablet"
+										: "Mobile",
 							);
 						}}
 					/>

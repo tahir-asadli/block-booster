@@ -86,15 +86,15 @@
 			"default": false
 		},
 		"gap": {
-			"type": "number",
+			"type": "string",
 			"default": 15
 		},
 		"tabletGap": {
-			"type": "number",
+			"type": "string",
 			"default": 15
 		},
 		"mobileGap": {
-			"type": "number",
+			"type": "string",
 			"default": 15
 		},
 		"svgColor": {

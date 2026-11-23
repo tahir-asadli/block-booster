@@ -327,7 +327,7 @@ const hasA11yProp = (props) => {
   \**************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"block-booster/icon-and-text","version":"0.1.0","title":"Icon & Text","category":"block-booster","description":"","example":{},"supports":{"html":false,"color":{"background":true,"text":true},"typography":{"fontSize":true,"lineHeight":true,"textAlign":true},"background":{"backgroundSize":true,"backgroundImage":true},"spacing":{"margin":true,"padding":true,"blockGap":true}},"attributes":{"imageId":{"type":"number","default":0},"imageUrl":{"type":"string","default":""},"imageName":{"type":"string","default":""},"imageWidth":{"type":"string","default":"32px"},"imageHeight":{"type":"string","default":"32px"},"bindImageDimensions":{"type":"boolean","default":false},"imageContent":{"type":"string","default":""},"text":{"type":"string","default":""},"reversed":{"type":"boolean","default":false},"tabletReversed":{"type":"boolean","default":false},"mobileReversed":{"type":"boolean","default":false},"stacked":{"type":"boolean","default":false},"tabletStacked":{"type":"boolean","default":false},"mobileStacked":{"type":"boolean","default":false},"gap":{"type":"number","default":15},"tabletGap":{"type":"number","default":15},"mobileGap":{"type":"number","default":15},"svgColor":{"type":"string"}},"textdomain":"block-booster","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"block-booster/icon-and-text","version":"0.1.0","title":"Icon & Text","category":"block-booster","description":"","example":{},"supports":{"html":false,"color":{"background":true,"text":true},"typography":{"fontSize":true,"lineHeight":true,"textAlign":true},"background":{"backgroundSize":true,"backgroundImage":true},"spacing":{"margin":true,"padding":true,"blockGap":true}},"attributes":{"imageId":{"type":"number","default":0},"imageUrl":{"type":"string","default":""},"imageName":{"type":"string","default":""},"imageWidth":{"type":"string","default":"32px"},"imageHeight":{"type":"string","default":"32px"},"bindImageDimensions":{"type":"boolean","default":false},"imageContent":{"type":"string","default":""},"text":{"type":"string","default":""},"reversed":{"type":"boolean","default":false},"tabletReversed":{"type":"boolean","default":false},"mobileReversed":{"type":"boolean","default":false},"stacked":{"type":"boolean","default":false},"tabletStacked":{"type":"boolean","default":false},"mobileStacked":{"type":"boolean","default":false},"gap":{"type":"string","default":15},"tabletGap":{"type":"string","default":15},"mobileGap":{"type":"string","default":15},"svgColor":{"type":"string"}},"textdomain":"block-booster","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
 
 /***/ }),
 
@@ -496,7 +496,6 @@ function Edit({
 
   // Handler for width/height change with binding
   const handleWidthChange = value => {
-    console.log("value", value);
     if (bindImageDimensions) {
       setAttributes({
         imageWidth: value,
@@ -520,7 +519,6 @@ function Edit({
       });
     }
   };
-  console.log("imageWidth", imageWidth);
   const ArrowRightLeftIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_9__["default"], {
     fill: "white",
     className: "svg-no-fill"
@@ -620,31 +618,31 @@ function Edit({
             setLayout(value);
             setEditorDeviceType(value == "desktop" ? "Desktop" : value == "tablet" ? "Tablet" : "Mobile");
           }
-        }), layout == "desktop" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
-          __nextHasNoMarginBottom: true,
+        }), layout == "desktop" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalUnitControl, {
           __next40pxDefaultSize: true,
-          value: gap,
+          units: units,
           label: null,
+          value: gap,
           onChange: value => setAttributes({
             gap: value
           }),
           min: 0,
           max: 100
-        }) : layout == "tablet" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
-          __nextHasNoMarginBottom: true,
+        }) : layout == "tablet" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalUnitControl, {
           __next40pxDefaultSize: true,
-          value: tabletGap,
+          units: units,
           label: null,
+          value: tabletGap,
           onChange: value => setAttributes({
             tabletGap: value
           }),
           min: 0,
           max: 100
-        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
-          __nextHasNoMarginBottom: true,
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalUnitControl, {
           __next40pxDefaultSize: true,
-          value: mobileGap,
+          units: units,
           label: null,
+          value: mobileGap,
           onChange: value => setAttributes({
             mobileGap: value
           }),

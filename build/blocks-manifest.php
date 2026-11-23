@@ -493,15 +493,15 @@ return array(
 				'default' => false
 			),
 			'gap' => array(
-				'type' => 'number',
+				'type' => 'string',
 				'default' => 15
 			),
 			'tabletGap' => array(
-				'type' => 'number',
+				'type' => 'string',
 				'default' => 15
 			),
 			'mobileGap' => array(
-				'type' => 'number',
+				'type' => 'string',
 				'default' => 15
 			),
 			'svgColor' => array(
