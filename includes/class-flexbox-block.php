@@ -126,10 +126,10 @@ final class Flexbox_Block
       }
     }
     if (!empty($css)) {
-      wp_register_style('flexsmith', false, [], '0.1.1');
-      wp_enqueue_style('flexsmith');
+      wp_register_style($this->block_name, false, [], BLOCK_BOOSTER_VERSION);
+      wp_enqueue_style($this->block_name);
       wp_add_inline_style(
-        'flexsmith',
+        $this->block_name,
         $css
       );
     }

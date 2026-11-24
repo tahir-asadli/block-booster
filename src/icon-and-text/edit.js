@@ -170,11 +170,11 @@ export default function Edit({
 	const ArrowRightLeftIcon = (
 		<ArrowRightLeft fill="white" className="svg-no-fill" />
 	);
-	const units = [
-		{ value: "px", label: "px", default: 0 },
-		{ value: "%", label: "%", default: 10 },
-		{ value: "em", label: "em", default: 0 },
-	];
+	// const units = [
+	// 	{ value: "px", label: "px", default: 0 },
+	// 	{ value: "%", label: "%", default: 10 },
+	// 	{ value: "em", label: "em", default: 0 },
+	// ];
 	return (
 		<>
 			<BlockControls>
@@ -202,7 +202,6 @@ export default function Edit({
 					>
 						<UnitControl
 							__next40pxDefaultSize
-							units={units}
 							label={__("Width", "block-booster")}
 							value={imageWidth}
 							onChange={handleWidthChange}
@@ -212,7 +211,6 @@ export default function Edit({
 						/>
 						<UnitControl
 							__next40pxDefaultSize
-							units={units}
 							label={__("Height", "block-booster")}
 							value={imageHeight}
 							onChange={handleHeightChange}
@@ -267,7 +265,6 @@ export default function Edit({
 					{layout == "desktop" ? (
 						<UnitControl
 							__next40pxDefaultSize
-							units={units}
 							label={null}
 							value={gap}
 							onChange={(value) =>
@@ -281,7 +278,6 @@ export default function Edit({
 					) : layout == "tablet" ? (
 						<UnitControl
 							__next40pxDefaultSize
-							units={units}
 							label={null}
 							value={tabletGap}
 							onChange={(value) =>
@@ -295,7 +291,6 @@ export default function Edit({
 					) : (
 						<UnitControl
 							__next40pxDefaultSize
-							units={units}
 							label={null}
 							value={mobileGap}
 							onChange={(value) =>

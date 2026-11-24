@@ -82,7 +82,7 @@
       "default": false
     },
     "gap": {
-      "type": "number",
+      "type": "string",
       "default": 20
     }
   },

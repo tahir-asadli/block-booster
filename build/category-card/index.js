@@ -8,7 +8,7 @@
   \**************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"block-booster/category-card","version":"0.1.0","title":"Category card","category":"block-booster","description":"Category card.","example":{},"supports":{"html":false,"color":{"background":true,"text":true},"typography":{"fontSize":true,"lineHeight":true,"textAlign":true},"background":{"backgroundSize":true},"spacing":{"margin":true,"padding":true,"blockGap":true},"shadow":true},"attributes":{"disableCSS":{"type":"string","default":"false"},"imageId":{"type":"number","default":0},"imageUrl":{"type":"string","default":""},"imageName":{"type":"string","default":""},"imageWidth":{"type":"number","default":64},"categoryId":{"type":"number","default":0},"categoryCount":{"type":"number","default":0},"categoryUrl":{"type":"string","default":""},"categoryName":{"type":"string","default":""},"postNameSingular":{"type":"string","default":""},"postNamePlural":{"type":"string","default":""},"isLink":{"type":"boolean","default":true},"vertical":{"type":"boolean","default":false},"gap":{"type":"number","default":20}},"textdomain":"block-booster","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"block-booster/category-card","version":"0.1.0","title":"Category card","category":"block-booster","description":"Category card.","example":{},"supports":{"html":false,"color":{"background":true,"text":true},"typography":{"fontSize":true,"lineHeight":true,"textAlign":true},"background":{"backgroundSize":true},"spacing":{"margin":true,"padding":true,"blockGap":true},"shadow":true},"attributes":{"disableCSS":{"type":"string","default":"false"},"imageId":{"type":"number","default":0},"imageUrl":{"type":"string","default":""},"imageName":{"type":"string","default":""},"imageWidth":{"type":"number","default":64},"categoryId":{"type":"number","default":0},"categoryCount":{"type":"number","default":0},"categoryUrl":{"type":"string","default":""},"categoryName":{"type":"string","default":""},"postNameSingular":{"type":"string","default":""},"postNamePlural":{"type":"string","default":""},"isLink":{"type":"boolean","default":true},"vertical":{"type":"boolean","default":false},"gap":{"type":"string","default":20}},"textdomain":"block-booster","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
 
 /***/ }),
 
@@ -68,7 +68,7 @@ function Edit({
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)({
     className: classNames.join(" "),
     style: {
-      gap: attributes.gap ? `${attributes.gap}px` : 0
+      gap: attributes.gap ? `${attributes.gap}` : 0
     }
   });
   const {
@@ -208,16 +208,22 @@ function Edit({
               vertical: value
             });
           }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-          __nextHasNoMarginBottom: true,
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalUnitControl, {
           __next40pxDefaultSize: true,
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Gap", "block-booster"),
           value: attributes.gap,
-          label: null,
-          onChange: value => setAttributes({
-            gap: value
-          }),
+          onChange: value => {
+            setAttributes({
+              gap: value
+            });
+          },
           min: 0,
-          max: 100
+          max: 100,
+          className: "block-booster-unit-control-no-margin",
+          style: {
+            flex: 1,
+            margin: 0
+          }
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.MediaUploadCheck, {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.MediaUpload, {
             allowedTypes: ["image"],
@@ -256,7 +262,7 @@ function Edit({
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
       ...blockProps,
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-        className: "wp-block-block-booster-category-card--left",
+        className: "block-booster-category-card--left",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ResizableBox, {
           size: {
             width: attributes.imageWidth > 0 ? attributes.imageWidth : undefined,
@@ -294,7 +300,7 @@ function Edit({
               height: attributes.imageWidth,
               borderRadius: attributes.imageWidth
             },
-            className: `wp-block-block-booster-category-card--image-wrapper wp-block-block-booster-category-card--type-${(0,_libs_global__WEBPACK_IMPORTED_MODULE_6__.getFileExtension)(attributes.imageUrl)}`,
+            className: `block-booster-category-card--image-wrapper block-booster-category-card--type-${(0,_libs_global__WEBPACK_IMPORTED_MODULE_6__.getFileExtension)(attributes.imageUrl)}`,
             children: attributes.imageId ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
               alt: attributes.imageName,
               src: attributes.imageUrl
@@ -302,12 +308,12 @@ function Edit({
           })
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-        className: "wp-block-block-booster-category-card--right",
+        className: "block-booster-category-card--right",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
-          className: "wp-block-block-booster-category-card--name",
+          className: "block-booster-category-card--name",
           children: attributes.categoryName
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("span", {
-          className: "wp-block-block-booster-category-card--count",
+          className: "block-booster-category-card--count",
           children: [attributes.categoryCount, " ", attributes.categoryCount !== 1 ? attributes.postNamePlural : attributes.postNameSingular]
         })]
       })]

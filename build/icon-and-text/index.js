@@ -523,19 +523,11 @@ function Edit({
     fill: "white",
     className: "svg-no-fill"
   });
-  const units = [{
-    value: "px",
-    label: "px",
-    default: 0
-  }, {
-    value: "%",
-    label: "%",
-    default: 10
-  }, {
-    value: "em",
-    label: "em",
-    default: 0
-  }];
+  // const units = [
+  // 	{ value: "px", label: "px", default: 0 },
+  // 	{ value: "%", label: "%", default: 10 },
+  // 	{ value: "em", label: "em", default: 0 },
+  // ];
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.BlockControls, {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToolbarGroup, {
@@ -563,7 +555,6 @@ function Edit({
           },
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalUnitControl, {
             __next40pxDefaultSize: true,
-            units: units,
             label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Width", "block-booster"),
             value: imageWidth,
             onChange: handleWidthChange,
@@ -575,7 +566,6 @@ function Edit({
             }
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalUnitControl, {
             __next40pxDefaultSize: true,
-            units: units,
             label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Height", "block-booster"),
             value: imageHeight,
             onChange: handleHeightChange,
@@ -620,7 +610,6 @@ function Edit({
           }
         }), layout == "desktop" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalUnitControl, {
           __next40pxDefaultSize: true,
-          units: units,
           label: null,
           value: gap,
           onChange: value => setAttributes({
@@ -630,7 +619,6 @@ function Edit({
           max: 100
         }) : layout == "tablet" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalUnitControl, {
           __next40pxDefaultSize: true,
-          units: units,
           label: null,
           value: tabletGap,
           onChange: value => setAttributes({
@@ -640,7 +628,6 @@ function Edit({
           max: 100
         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalUnitControl, {
           __next40pxDefaultSize: true,
-          units: units,
           label: null,
           value: mobileGap,
           onChange: value => setAttributes({

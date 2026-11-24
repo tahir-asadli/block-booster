@@ -21,7 +21,6 @@ $block_booster_image_name = !empty($attributes['imageName']) ? $attributes['imag
 $block_booster_image_url = !empty($attributes['imageUrl']) ? $attributes['imageUrl'] : '';
 
 $block_booster_category = get_category($block_booster_category_id);
-
 if (!$block_booster_category) {
 	return;
 }
@@ -29,8 +28,8 @@ if (is_wp_error($block_booster_category)) {
 	return;
 }
 
-$block_booster_category_name = $category->name;
-$block_booster_category_count = $category->count;
+$block_booster_category_name = $block_booster_category->name;
+$block_booster_category_count = $block_booster_category->count;
 $block_booster_category_url = get_category_link($block_booster_category_id);
 
 $block_booster_gap = !empty($attributes['gap']) ? $attributes['gap'] : '0';
@@ -85,25 +84,4 @@ if ('a' === $block_booster_tag_name) {
 	<?php } ?>
 	<span class="block-booster-category-card--count"><?php echo esc_html($block_booster_category_count); ?>&nbsp;<?php echo $block_booster_category_count > 1 ? esc_html($block_booster_post_name_plural) : esc_html($block_booster_post_name_singular); ?></span>
 </div>
-</<?php echo esc_attr($block_booster_tag_name); ?>> <style>
-	#<?php echo esc_attr($block_booster_additional_attributes['id']); ?> {
-
-		<?php
-		if ($block_booster_gap) {
-			$block_booster_cat_gap = (int) $block_booster_gap;
-			?>
-			<?php echo esc_attr("gap: {$block_booster_cat_gap}px;"); ?>
-		<?php } ?>
-		<?php
-		if ($block_booster_image_width) {
-			$block_booster_cat_image_w = (int) $block_booster_image_width;
-			?>
-			.block-booster-category-card--image-wrapper {
-				<?php echo esc_attr("width: {$block_booster_cat_image_w}px;"); ?>
-				<?php echo esc_attr("height: {$block_booster_cat_image_w}px;"); ?>
-				<?php echo esc_attr("border-radius: {$block_booster_cat_image_w}px;"); ?>
-			}
-
-		<?php } ?>
-	}
-</style>
+</<?php echo esc_attr($block_booster_tag_name); ?>>

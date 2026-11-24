@@ -17,6 +17,7 @@ import {
 	ResizableBox,
 	__experimentalToggleGroupControl as ToggleGroupControl,
 	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
+	__experimentalUnitControl as UnitControl,
 } from "@wordpress/components";
 import { useSelect } from "@wordpress/data";
 import { __ } from "@wordpress/i18n";
@@ -46,7 +47,7 @@ export default function Edit({
 	const blockProps = useBlockProps({
 		className: classNames.join(" "),
 		style: {
-			gap: attributes.gap ? `${attributes.gap}px` : 0,
+			gap: attributes.gap ? `${attributes.gap}` : 0,
 		},
 	});
 
@@ -78,9 +79,9 @@ export default function Edit({
 		setOptions(
 			allCategories
 				? allCategories.map((category) => ({
-						label: category.name,
-						value: category.id,
-				  }))
+					label: category.name,
+					value: category.id,
+				}))
 				: [],
 		);
 	}, [allCategories, hasResolved]);
@@ -182,18 +183,21 @@ export default function Edit({
 							setAttributes({ vertical: value });
 						}}
 					/>
-					<RangeControl
-						__nextHasNoMarginBottom
+
+					<UnitControl
 						__next40pxDefaultSize
+						label={__("Gap", "block-booster")}
 						value={attributes.gap}
-						label={null}
-						onChange={(value) =>
+						onChange={(value) => {
 							setAttributes({
 								gap: value,
 							})
 						}
+						}
 						min={0}
 						max={100}
+						className="block-booster-unit-control-no-margin"
+						style={{ flex: 1, margin: 0 }}
 					/>
 
 					<MediaUploadCheck>
@@ -204,9 +208,8 @@ export default function Edit({
 							onSelect={onImageSelect}
 							render={({ open }) => (
 								<div
-									className={`block-booster-media-and-text--left ${
-										attributes.imageUrl ? "has-image" : "has-no-image"
-									}`}
+									className={`block-booster-media-and-text--left ${attributes.imageUrl ? "has-image" : "has-no-image"
+										}`}
 								>
 									{attributes.imageUrl ? (
 										<>
@@ -237,7 +240,7 @@ export default function Edit({
 				</PanelBody>
 			</InspectorControls>
 			<div {...blockProps}>
-				<div className="wp-block-block-booster-category-card--left">
+				<div className="block-booster-category-card--left">
 					<ResizableBox
 						size={{
 							width:
@@ -278,7 +281,7 @@ export default function Edit({
 								height: attributes.imageWidth,
 								borderRadius: attributes.imageWidth,
 							}}
-							className={`wp-block-block-booster-category-card--image-wrapper wp-block-block-booster-category-card--type-${getFileExtension(
+							className={`block-booster-category-card--image-wrapper block-booster-category-card--type-${getFileExtension(
 								attributes.imageUrl,
 							)}`}
 						>
@@ -288,11 +291,11 @@ export default function Edit({
 						</span>
 					</ResizableBox>
 				</div>
-				<div className="wp-block-block-booster-category-card--right">
-					<span className="wp-block-block-booster-category-card--name">
+				<div className="block-booster-category-card--right">
+					<span className="block-booster-category-card--name">
 						{attributes.categoryName}
 					</span>
-					<span className="wp-block-block-booster-category-card--count">
+					<span className="block-booster-category-card--count">
 						{attributes.categoryCount}{" "}
 						{attributes.categoryCount !== 1
 							? attributes.postNamePlural

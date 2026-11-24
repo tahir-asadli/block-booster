@@ -135,10 +135,10 @@ final class IconAndText_Block
       }
     }
     if (!empty($css)) {
-      wp_register_style('block-booster', false, [], '0.1.1');
-      wp_enqueue_style('block-booster');
+      wp_register_style($this->block_name, false, [], BLOCK_BOOSTER_VERSION);
+      wp_enqueue_style($this->block_name);
       wp_add_inline_style(
-        'block-booster',
+        $this->block_name,
         $css
       );
     }
