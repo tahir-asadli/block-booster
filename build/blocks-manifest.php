@@ -167,6 +167,10 @@ return array(
 				'type' => 'boolean',
 				'default' => true
 			),
+			'showCategoryImage' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
 			'height' => array(
 				'type' => 'number',
 				'default' => 230

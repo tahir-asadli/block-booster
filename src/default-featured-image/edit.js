@@ -43,6 +43,7 @@ export default function Edit(props) {
 			imageName,
 			imagePosition,
 			showFeaturedImage,
+			showCategoryImage,
 			height,
 			isLink,
 		},
@@ -107,6 +108,16 @@ export default function Edit(props) {
 						}}
 					/>
 					<ToggleControl
+						label={__("Show post's category image", "block-booster")}
+						__next40pxDefaultSize
+						help={'Works with "Categories Images" plugin'}
+						title={'Works with "Categories Images" plugin'}
+						checked={showCategoryImage}
+						onChange={() => {
+							setAttributes({ showCategoryImage: !showCategoryImage });
+						}}
+					/>
+					<ToggleControl
 						style={{ marginBottom: "15px" }}
 						label={__("Link to Post", "block-booster")}
 						__next40pxDefaultSize
@@ -146,9 +157,8 @@ export default function Edit(props) {
 							onSelect={onImageSelect}
 							render={({ open }) => (
 								<div
-									class={`block-booster-media-and-text--left ${
-										imageUrl ? "has-image" : "has-no-image"
-									}`}
+									class={`block-booster-media-and-text--left ${imageUrl ? "has-image" : "has-no-image"
+										}`}
 								>
 									{imageUrl ? (
 										<>

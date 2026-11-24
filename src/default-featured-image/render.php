@@ -5,42 +5,55 @@
  * @package block-booster
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
-$block_booster_post_id             = $block->context['postId'];
-$block_booster_height              = ! empty( $attributes['height'] ) ? $attributes['height'] . 'px' : 'initial';
-$block_booster_image_position      = ! empty( $attributes['imagePosition'] ) ? $attributes['imagePosition'] : 'initial';
-$block_booster_show_featured_image = ! empty( $attributes['showFeaturedImage'] ) && true === $attributes['showFeaturedImage'] ? true : false;
-$block_booster_is_link             = ! empty( $attributes['isLink'] ) && true === $attributes['isLink'] ? true : false;
-$block_booster_classes             = array();
-$block_booster_classes[]           = 'wp-block-block-booster-default-featured-image--' . $block_booster_image_position;
-$block_booster_image_url           = ! empty( $attributes['imageUrl'] ) ? $attributes['imageUrl'] : '';
-$block_booster_image_alt           = ! empty( $attributes['imageAlt'] ) ? $attributes['imageAlt'] : '';
-$block_booster_post_thumbnail      = get_the_post_thumbnail_url( $block_booster_post_id );
-$block_booster_post_link           = get_the_permalink( $block_booster_post_id );
-$block_booster_post_title          = get_the_title( $block_booster_post_id );
-if ( $block_booster_show_featured_image && $block_booster_post_thumbnail ) {
+$block_booster_post_id = $block->context['postId'];
+$block_booster_height = !empty($attributes['height']) ? $attributes['height'] . 'px' : 'initial';
+$block_booster_image_position = !empty($attributes['imagePosition']) ? $attributes['imagePosition'] : 'initial';
+$block_booster_show_featured_image = !empty($attributes['showFeaturedImage']) && true === $attributes['showFeaturedImage'] ? true : false;
+$block_booster_is_link = !empty($attributes['isLink']) && true === $attributes['isLink'] ? true : false;
+$block_booster_classes = array();
+$block_booster_classes[] = 'wp-block-block-booster-default-featured-image--' . $block_booster_image_position;
+$block_booster_image_url = !empty($attributes['imageUrl']) ? $attributes['imageUrl'] : '';
+$block_booster_image_alt = !empty($attributes['imageAlt']) ? $attributes['imageAlt'] : '';
+$block_booster_post_thumbnail = get_the_post_thumbnail_url($block_booster_post_id);
+$block_booster_post_link = get_the_permalink($block_booster_post_id);
+$block_booster_post_title = get_the_title($block_booster_post_id);
+if ($block_booster_show_featured_image && $block_booster_post_thumbnail) {
 	$block_booster_image_url = $block_booster_post_thumbnail;
 	$block_booster_image_alt = 'Post image';
 }
-$block_booster_styles  = '';
+$block_booster_styles = '';
 $block_booster_styles .= 'height:' . $block_booster_height . ';';
 
+// Term info
+$categories = get_the_category($block_booster_post_id); // $post_id optional inside the loop
+$category_image = '';
+if (!empty($categories)) {
+	$first_category_id = $categories[0]->term_id;
+	if ($first_category_id) {
+		$metas = get_term_meta($first_category_id);
+		if (!empty($metas['z_taxonomy_image']) && !empty($metas['z_taxonomy_image'][0])) {
+			$category_image = $metas['z_taxonomy_image'][0];
+		}
+	}
+}
+
 $block_booster_additional_attributes = array(
-	'class' => join( ' ', $block_booster_classes ),
-	'id'    => wp_unique_id( 'block-booster-' ),
+	'class' => join(' ', $block_booster_classes),
+	'id' => wp_unique_id('block-booster-'),
 	'style' => $block_booster_styles,
 );
 ?>
 <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-<div <?php echo get_block_wrapper_attributes( $block_booster_additional_attributes ); ?>>
-	<?php if ( $block_booster_is_link ) { ?>
-	<a href="<?php echo esc_url( $block_booster_post_link ); ?>" title="<?php echo esc_attr( $block_booster_post_title ); ?>">
-	<?php } ?>
-	<img src="<?php echo esc_url( $block_booster_image_url ); ?>" alt="<?php echo esc_attr( $block_booster_image_alt ); ?>">
-	<?php if ( $block_booster_is_link ) { ?>
-	</a>
+<div <?php echo get_block_wrapper_attributes($block_booster_additional_attributes); ?>>
+	<?php if ($block_booster_is_link) { ?>
+		<a href="<?php echo esc_url($block_booster_post_link); ?>" title="<?php echo esc_attr($block_booster_post_title); ?>">
+		<?php } ?>
+		<img src="<?php echo esc_url($block_booster_image_url); ?>" alt="<?php echo esc_attr($block_booster_image_alt); ?>">
+		<?php if ($block_booster_is_link) { ?>
+		</a>
 	<?php } ?>
 </div>

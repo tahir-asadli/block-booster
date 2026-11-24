@@ -64,6 +64,10 @@
       "type": "boolean",
       "default": true
     },
+    "showCategoryImage": {
+      "type": "boolean",
+      "default": true
+    },
     "height": {
       "type": "number",
       "default": 230
