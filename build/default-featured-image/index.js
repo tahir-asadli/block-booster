@@ -409,6 +409,50 @@ function Edit(props) {
   const media = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.useSelect)(select => {
     return featuredImageId ? select(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_4__.store).getMedia(featuredImageId) : null;
   }, [featuredImageId]);
+  const {
+    categories,
+    isResolving
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.useSelect)(select => {
+    var _post$categories, _getEntityRecords;
+    const {
+      getEditedEntityRecord,
+      getEntityRecords,
+      isResolving
+    } = select(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_4__.store);
+    const post = getEditedEntityRecord('postType', postType, postId);
+    const categoryIds = (_post$categories = post?.categories) !== null && _post$categories !== void 0 ? _post$categories : [];
+    if (!categoryIds.length) {
+      return {
+        categories: [],
+        isResolving: false
+      };
+    }
+    const query = {
+      include: categoryIds,
+      per_page: -1
+    };
+    return {
+      categories: (_getEntityRecords = getEntityRecords('taxonomy', 'category', query)) !== null && _getEntityRecords !== void 0 ? _getEntityRecords : [],
+      isResolving: isResolving('getEntityRecords', ['taxonomy', 'category', query])
+    };
+  }, [postType, postId]);
+
+  // each term: { id, name, slug, meta: { your_term_key: '...' }, ... }
+  let categoryImage = null;
+  categories.map(category => {
+    if (category?.z_taxonomy_image_url) {
+      if (!category.z_taxonomy_image_url.endsWith('/wp-content/plugins/categories-images/assets/images/placeholder.png')) {
+        categoryImage = category.z_taxonomy_image_url;
+      }
+    }
+  });
+
+  // const termMeta = categories.map((term) => ({
+  // 	id: term.id,
+  // 	name: term.name,
+  // 	meta: term.meta,
+  // 	category_image: term.z_taxonomy_image_url
+  // }));
 
   // Get the image URL (falls back to full size if no specific size is available)
   const featuredImageUrl = media?.source_url || "";
@@ -439,6 +483,12 @@ function Edit(props) {
     fill: "white",
     className: "svg-no-fill"
   });
+  let postImageUrl = imageUrl;
+  if (showFeaturedImage && featuredImageUrl) {
+    postImageUrl = featuredImageUrl;
+  } else if (showCategoryImage && categoryImage) {
+    postImageUrl = categoryImage;
+  }
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
@@ -559,22 +609,15 @@ function Edit(props) {
           toggleSelection(false);
         },
         showHandle: isSelected,
-        children: showFeaturedImage && featuredImageUrl ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("img", {
-          src: featuredImageUrl,
-          style: {
-            width: "100%",
-            height: "100%",
-            objectPosition: imagePosition
-          }
-        }) : imageUrl ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("img", {
-          src: imageUrl,
+        children: postImageUrl && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("img", {
+          src: postImageUrl,
           alt: imageName,
           style: {
             width: "100%",
             height: "100%",
             objectPosition: imagePosition
           }
-        }) : null
+        })
       })
     })]
   });

@@ -13,6 +13,7 @@ $block_booster_post_id = $block->context['postId'];
 $block_booster_height = !empty($attributes['height']) ? $attributes['height'] . 'px' : 'initial';
 $block_booster_image_position = !empty($attributes['imagePosition']) ? $attributes['imagePosition'] : 'initial';
 $block_booster_show_featured_image = !empty($attributes['showFeaturedImage']) && true === $attributes['showFeaturedImage'] ? true : false;
+$block_booster_show_category_image = !empty($attributes['showCategoryImage']) && true === $attributes['showCategoryImage'] ? true : false;
 $block_booster_is_link = !empty($attributes['isLink']) && true === $attributes['isLink'] ? true : false;
 $block_booster_classes = array();
 $block_booster_classes[] = 'wp-block-block-booster-default-featured-image--' . $block_booster_image_position;
@@ -21,12 +22,6 @@ $block_booster_image_alt = !empty($attributes['imageAlt']) ? $attributes['imageA
 $block_booster_post_thumbnail = get_the_post_thumbnail_url($block_booster_post_id);
 $block_booster_post_link = get_the_permalink($block_booster_post_id);
 $block_booster_post_title = get_the_title($block_booster_post_id);
-if ($block_booster_show_featured_image && $block_booster_post_thumbnail) {
-	$block_booster_image_url = $block_booster_post_thumbnail;
-	$block_booster_image_alt = 'Post image';
-}
-$block_booster_styles = '';
-$block_booster_styles .= 'height:' . $block_booster_height . ';';
 
 // Term info
 $categories = get_the_category($block_booster_post_id); // $post_id optional inside the loop
@@ -40,6 +35,14 @@ if (!empty($categories)) {
 		}
 	}
 }
+if ($block_booster_show_featured_image && $block_booster_post_thumbnail) {
+	$block_booster_image_url = $block_booster_post_thumbnail;
+	$block_booster_image_alt = 'Post image';
+} else if ($block_booster_show_category_image && $category_image != '') {
+	$block_booster_image_url = $category_image;
+}
+$block_booster_styles = '';
+$block_booster_styles .= 'height:' . $block_booster_height . ';';
 
 $block_booster_additional_attributes = array(
 	'class' => join(' ', $block_booster_classes),
@@ -52,7 +55,9 @@ $block_booster_additional_attributes = array(
 	<?php if ($block_booster_is_link) { ?>
 		<a href="<?php echo esc_url($block_booster_post_link); ?>" title="<?php echo esc_attr($block_booster_post_title); ?>">
 		<?php } ?>
-		<img src="<?php echo esc_url($block_booster_image_url); ?>" alt="<?php echo esc_attr($block_booster_image_alt); ?>">
+		<?php if ($block_booster_image_url) { ?>
+			<img src="<?php echo esc_url($block_booster_image_url); ?>" alt="<?php echo esc_attr($block_booster_image_alt); ?>">
+		<?php } ?>
 		<?php if ($block_booster_is_link) { ?>
 		</a>
 	<?php } ?>

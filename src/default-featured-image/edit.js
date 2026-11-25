@@ -68,6 +68,49 @@ export default function Edit(props) {
 		},
 		[featuredImageId],
 	);
+	const { categories, isResolving } = useSelect(
+		(select) => {
+			const { getEditedEntityRecord, getEntityRecords, isResolving } =
+				select(coreStore);
+
+			const post = getEditedEntityRecord('postType', postType, postId);
+			const categoryIds = post?.categories ?? [];
+
+			if (!categoryIds.length) {
+				return { categories: [], isResolving: false };
+			}
+
+			const query = { include: categoryIds, per_page: -1, };
+
+			return {
+				categories: getEntityRecords('taxonomy', 'category', query) ?? [],
+				isResolving: isResolving('getEntityRecords', [
+					'taxonomy',
+					'category',
+					query,
+				]),
+			};
+		},
+		[postType, postId]
+	);
+
+	// each term: { id, name, slug, meta: { your_term_key: '...' }, ... }
+	let categoryImage = null;
+	categories.map((category) => {
+		if (category?.z_taxonomy_image_url) {
+			if (!category.z_taxonomy_image_url.endsWith('/wp-content/plugins/categories-images/assets/images/placeholder.png')) {
+				categoryImage = category.z_taxonomy_image_url;
+			}
+		}
+
+	});
+
+	// const termMeta = categories.map((term) => ({
+	// 	id: term.id,
+	// 	name: term.name,
+	// 	meta: term.meta,
+	// 	category_image: term.z_taxonomy_image_url
+	// }));
 
 	// Get the image URL (falls back to full size if no specific size is available)
 	const featuredImageUrl = media?.source_url || "";
@@ -94,7 +137,12 @@ export default function Edit(props) {
 	const ArrowRightLeftIcon = (
 		<ArrowRightLeft fill="white" className="svg-no-fill" />
 	);
-
+	let postImageUrl = imageUrl;
+	if (showFeaturedImage && featuredImageUrl) {
+		postImageUrl = featuredImageUrl;
+	} else if (showCategoryImage && categoryImage) {
+		postImageUrl = categoryImage;
+	}
 	return (
 		<>
 			<InspectorControls>
@@ -216,26 +264,15 @@ export default function Edit(props) {
 					}}
 					showHandle={isSelected}
 				>
-					{showFeaturedImage && featuredImageUrl ? (
-						<img
-							src={featuredImageUrl}
-							style={{
-								width: "100%",
-								height: "100%",
-								objectPosition: imagePosition,
-							}}
-						/>
-					) : imageUrl ? (
-						<img
-							src={imageUrl}
-							alt={imageName}
-							style={{
-								width: "100%",
-								height: "100%",
-								objectPosition: imagePosition,
-							}}
-						/>
-					) : null}
+					{postImageUrl && <img
+						src={postImageUrl}
+						alt={imageName}
+						style={{
+							width: "100%",
+							height: "100%",
+							objectPosition: imagePosition,
+						}}
+					/>}
 				</ResizableBox>
 			</div>
 		</>
