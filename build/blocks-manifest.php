@@ -35,8 +35,8 @@ return array(
 		),
 		'attributes' => array(
 			'disableCSS' => array(
-				'type' => 'string',
-				'default' => 'false'
+				'type' => 'boolean',
+				'default' => false
 			),
 			'imageId' => array(
 				'type' => 'number',

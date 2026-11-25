@@ -36,12 +36,12 @@ export default function Edit({
 	toggleSelection,
 }) {
 	const [options, setOptions] = useState([]);
-	const classNames = [];
+	const classNames = ['block-booster-category-card', 'block-booster-category-card'];
 	if (attributes.vertical) {
-		classNames.push("wp-block-block-booster-category-card--vertical");
+		classNames.push("block-booster-category-card--vertical");
 	}
-	if (attributes.disableCSS === "true") {
-		classNames.push("wp-block-block-booster-category-card--no-css");
+	if (attributes.disableCSS) {
+		classNames.push("block-booster-category-card--no-css");
 	}
 
 	const blockProps = useBlockProps({
@@ -129,12 +129,12 @@ export default function Edit({
 					>
 						<ToggleGroupControlOption
 							isAdaptiveWidth={true}
-							value={"true"}
+							value={true}
 							label={__("Yes", "block-booster")}
 						/>
 						<ToggleGroupControlOption
 							isAdaptiveWidth={true}
-							value={"false"}
+							value={false}
 							label={__("No", "block-booster")}
 						/>
 					</ToggleGroupControl>
@@ -265,7 +265,7 @@ export default function Edit({
 							const imageWidth = currentWidth + delta.width;
 							if (imageWidth > 0) {
 								setAttributes({
-									imageWidth,
+									imageWidth: imageWidth,
 								});
 							}
 							toggleSelection(true);

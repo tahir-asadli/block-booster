@@ -8,7 +8,7 @@
   \**************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"block-booster/category-card","version":"0.1.0","title":"Category card","category":"block-booster","description":"Category card.","example":{},"supports":{"html":false,"color":{"background":true,"text":true},"typography":{"fontSize":true,"lineHeight":true,"textAlign":true},"background":{"backgroundSize":true},"spacing":{"margin":true,"padding":true,"blockGap":true},"shadow":true},"attributes":{"disableCSS":{"type":"string","default":"false"},"imageId":{"type":"number","default":0},"imageUrl":{"type":"string","default":""},"imageName":{"type":"string","default":""},"imageWidth":{"type":"number","default":64},"categoryId":{"type":"number","default":0},"categoryCount":{"type":"number","default":0},"categoryUrl":{"type":"string","default":""},"categoryName":{"type":"string","default":""},"postNameSingular":{"type":"string","default":""},"postNamePlural":{"type":"string","default":""},"isLink":{"type":"boolean","default":true},"vertical":{"type":"boolean","default":false},"gap":{"type":"string","default":20}},"textdomain":"block-booster","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"block-booster/category-card","version":"0.1.0","title":"Category card","category":"block-booster","description":"Category card.","example":{},"supports":{"html":false,"color":{"background":true,"text":true},"typography":{"fontSize":true,"lineHeight":true,"textAlign":true},"background":{"backgroundSize":true},"spacing":{"margin":true,"padding":true,"blockGap":true},"shadow":true},"attributes":{"disableCSS":{"type":"boolean","default":false},"imageId":{"type":"number","default":0},"imageUrl":{"type":"string","default":""},"imageName":{"type":"string","default":""},"imageWidth":{"type":"number","default":64},"categoryId":{"type":"number","default":0},"categoryCount":{"type":"number","default":0},"categoryUrl":{"type":"string","default":""},"categoryName":{"type":"string","default":""},"postNameSingular":{"type":"string","default":""},"postNamePlural":{"type":"string","default":""},"isLink":{"type":"boolean","default":true},"vertical":{"type":"boolean","default":false},"gap":{"type":"string","default":20}},"textdomain":"block-booster","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
 
 /***/ }),
 
@@ -58,12 +58,12 @@ function Edit({
   toggleSelection
 }) {
   const [options, setOptions] = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)([]);
-  const classNames = [];
+  const classNames = ['block-booster-category-card', 'block-booster-category-card'];
   if (attributes.vertical) {
-    classNames.push("wp-block-block-booster-category-card--vertical");
+    classNames.push("block-booster-category-card--vertical");
   }
-  if (attributes.disableCSS === "true") {
-    classNames.push("wp-block-block-booster-category-card--no-css");
+  if (attributes.disableCSS) {
+    classNames.push("block-booster-category-card--no-css");
   }
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)({
     className: classNames.join(" "),
@@ -149,11 +149,11 @@ function Edit({
           }),
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalToggleGroupControlOption, {
             isAdaptiveWidth: true,
-            value: "true",
+            value: true,
             label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Yes", "block-booster")
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalToggleGroupControlOption, {
             isAdaptiveWidth: true,
-            value: "false",
+            value: false,
             label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("No", "block-booster")
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
@@ -285,7 +285,7 @@ function Edit({
             const imageWidth = currentWidth + delta.width;
             if (imageWidth > 0) {
               setAttributes({
-                imageWidth
+                imageWidth: imageWidth
               });
             }
             toggleSelection(true);

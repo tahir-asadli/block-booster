@@ -19,16 +19,17 @@ final class CategoryCard_Block
   private $attributes = [];
   public $block_name = '';
 
-  private const CLASS_PROPS = [
-    'disableCSS' => 'reversed',
-    'vertical' => 'stacked',
-  ];
+  // private const CLASS_PROPS = [
+  //   'disableCSS' => 'reversed',
+  //   'vertical' => 'stacked',
+  // ];
 
   private const STYLE_PROPS = array(
     'gap' => 'gap',
-    'width' => 'width',
-    'height' => 'height',
-    'border-radius' => 'border-radius',
+  );
+
+  private const SVG_STYLE_PROPS = array(
+    'imageWidth' => 'width',
   );
 
   private const BREAKPOINTS = array(
@@ -61,37 +62,13 @@ final class CategoryCard_Block
   public function get_classes()
   {
     $classes = array($this->block_name);
-
-    foreach (self::CLASS_PROPS as $slug => $name) {
-
-      foreach (array_keys(self::BREAKPOINTS) as $breakpoint) {
-
-        $key = $this->attribute_key($breakpoint, $slug);
-
-        if (empty($this->attributes[$key])) {
-          continue;
-        }
-        $value = $this->attributes[$key];
-        if (is_bool($value)) {
-          if ($value === true) {
-            $classes[] = sanitize_html_class(
-              '' === $breakpoint
-              ? $this->block_name . "--is-{$name}"
-              : $this->block_name . "--{$breakpoint}-is-{$name}"
-            );
-          }
-        } else {
-          $classes[] = sanitize_html_class(
-            '' === $breakpoint
-            ? $this->block_name . "--{$name}-{$value}"
-            : $this->block_name . "--{$name}-{$breakpoint}-{$value}"
-          );
-        }
-
-      }
+    if (!empty($this->attributes['vertical']) && true === $this->attributes['vertical']) {
+      $classes[] = 'block-booster-category-card--vertical';
+    }
+    if (!empty($this->attributes['disableCSS']) && true === $this->attributes['disableCSS']) {
+      $classes[] = 'block-booster-category-card--no-css';
     }
     return $classes;
-
   }
 
 
@@ -112,13 +89,40 @@ final class CategoryCard_Block
         if (empty($this->attributes[$key])) {
           continue;
         }
-        $declaration = safecss_filter_attr($property . ':' . $this->attributes[$key]);
+        if ($key == 'imageWidth') {
+          $declaration = safecss_filter_attr($property . ':' . $this->attributes[$key] . 'px');
+        } else {
+          $declaration = safecss_filter_attr($property . ':' . $this->attributes[$key]);
+        }
         if ($declaration) {
           $rules .= $declaration . ';';
         }
       }
       if ($rules) {
         $css .= sprintf('@media %s{#%s{%s}}', $media, $this->id, $rules);
+      }
+      $rules = '';
+      $the_selector = $this->id . ' .block-booster-category-card--image-wrapper';
+      foreach (self::SVG_STYLE_PROPS as $name => $property) {
+        $key = $this->attribute_key($breakpoint, $name);
+        if (empty($this->attributes[$key])) {
+          continue;
+        }
+        if ($key == 'imageWidth') {
+          $declaration = safecss_filter_attr('width' . ':' . $this->attributes[$key] . 'px');
+          $rules .= $declaration . ';';
+          $declaration = safecss_filter_attr('height' . ':' . $this->attributes[$key] . 'px');
+          $rules .= $declaration . ';';
+          $declaration = safecss_filter_attr('border-radius' . ':' . $this->attributes[$key] . 'px');
+          $rules .= $declaration . ';';
+
+        } else {
+          $declaration = safecss_filter_attr($property . ':' . $this->attributes[$key]);
+          $rules .= $declaration . ';';
+        }
+      }
+      if ($rules) {
+        $css .= sprintf('@media %s{#%s{%s}}', $media, $the_selector, $rules);
       }
     }
     if (!empty($css)) {

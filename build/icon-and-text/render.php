@@ -11,7 +11,6 @@ if (!defined('ABSPATH')) {
   exit;
 }
 $icon_and_text = new \Blockbooster\IconAndText_Block('block-booster-icon-and-text', $attributes);
-
 $block_booster_text = !empty($attributes['text']) ? $attributes['text'] : '';
 $block_booster_image_url = !empty($attributes['imageUrl']) ? $attributes['imageUrl'] : '';
 $block_booster_image_is_svg = strtolower(pathinfo($block_booster_image_url, PATHINFO_EXTENSION)) === 'svg';
@@ -45,8 +44,8 @@ $block_booster_svg_allowed_attributes = array(
           $block_booster_svg_allowed_attributes
         );
         ?>
-      <?php } else { ?>bbb <img src="<?php echo esc_url($attributes['imageUrl']); ?>" alt="<?php echo esc_attr($attributes['imageName']); ?>" width="<?php echo esc_attr($block_booster_image_width); ?>" height="<?php echo esc_attr($block_booster_image_height); ?>">
-      <?php } ?>
+      <?php } else { ?>
+        <img src="<?php echo esc_url($attributes['imageUrl']); ?>" alt="<?php echo esc_attr($attributes['imageName']); ?>" width="<?php echo esc_attr($block_booster_image_width); ?>" height="<?php echo esc_attr($block_booster_image_height); ?>"> <?php } ?>
     <?php } ?>
   </div>
   <div class="block-booster-icon-and-text--right">
