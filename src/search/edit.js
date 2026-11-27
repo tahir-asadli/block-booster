@@ -8,6 +8,7 @@ import {
 	TextControl,
 	RangeControl,
 	ResizableBox,
+	__experimentalUnitControl as UnitControl,
 } from "@wordpress/components";
 import { InspectorControls, useBlockProps } from "@wordpress/block-editor";
 import { __ } from "@wordpress/i18n";
@@ -22,7 +23,7 @@ export default function Edit({
 	toggleSelection,
 	isSelected,
 }) {
-	const classNames = [];
+	const classNames = ['block-booster-search'];
 	if (!attributes.disableCSS) {
 		classNames.push("has-style");
 	}
@@ -113,10 +114,10 @@ export default function Edit({
 						value={attributes.buttonText}
 						onChange={(value) => setAttributes({ buttonText: value })}
 					/>
-					<RangeControl
-						label={__("Height", "block-booster")}
-						__nextHasNoMarginBottom
+
+					<UnitControl
 						__next40pxDefaultSize
+						label={__("Height", "block-booster")}
 						value={attributes.height}
 						onChange={(value) =>
 							setAttributes({
@@ -125,11 +126,13 @@ export default function Edit({
 						}
 						min={0}
 						max={100}
+						className="block-booster-unit-control-no-margin"
+						style={{ flex: 1, margin: 0 }}
 					/>
-					<RangeControl
-						label={__("Width", "block-booster")}
-						__nextHasNoMarginBottom
+
+					<UnitControl
 						__next40pxDefaultSize
+						label={__("Width", "block-booster")}
 						value={attributes.width}
 						onChange={(value) =>
 							setAttributes({
@@ -138,6 +141,8 @@ export default function Edit({
 						}
 						min={0}
 						max={500}
+						className="block-booster-unit-control-no-margin"
+						style={{ flex: 1, margin: 0 }}
 					/>
 				</PanelBody>
 			</InspectorControls>

@@ -663,12 +663,12 @@ return array(
 				'default' => ''
 			),
 			'height' => array(
-				'type' => 'number',
-				'default' => 40
+				'type' => 'string',
+				'default' => '40px'
 			),
 			'width' => array(
-				'type' => 'number',
-				'default' => 300
+				'type' => 'string',
+				'default' => '300px'
 			)
 		),
 		'textdomain' => 'block-booster',

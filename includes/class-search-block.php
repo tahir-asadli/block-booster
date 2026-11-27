@@ -76,7 +76,7 @@ final class Search_Block
       if (empty($this->attributes[$name])) {
         continue;
       }
-      $declaration = safecss_filter_attr($property . ':' . $this->attributes[$name]) . 'px';
+      $declaration = safecss_filter_attr($property . ':' . $this->attributes[$name]);
       if ($declaration) {
         $rules .= $declaration . ';';
       }
